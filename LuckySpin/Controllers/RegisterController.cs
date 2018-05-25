@@ -7,13 +7,17 @@ namespace LuckySpin.Controllers
     {
         public ActionResult Index()
         {
-
             return View();
         }
 
         [HttpPost]
-        public ActionResult Register(Registration registration)
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(Registration registration)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Index", registration);
+            }
             return RedirectToAction("Index", "Home");
         }
     }
