@@ -25,6 +25,16 @@ namespace LuckySpin
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            
+            bundles.Add(new StyleBundle("~/css/wheel").Include(
+                    "~/Content/wheel/main-DB.css",
+                    "~/Content/wheel/reset.css",
+                    "~/Content/wheel/style.css"));
+
+            bundles.Add(new ScriptBundle("~/script/wheel").Include(
+                    "~/Scripts/wheel/jquery-*",
+                    "~/Scripts/wheel/tt-new/*.js",
+                    "~/Scripts/wheel/*.js"));
         }
     }
 }

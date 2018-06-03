@@ -161,15 +161,20 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\wheel\main-DB.css" />
+    <Content Include="Content\wheel\reset.css" />
+    <Content Include="Content\wheel\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\rotate.gif" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\wheel\gothamrnd-book.woff" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -181,6 +186,52 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\wheel\CEndPanel.js" />
+    <Content Include="Scripts\wheel\CGfxButton.js" />
+    <Content Include="Scripts\wheel\CLang.js" />
+    <Content Include="Scripts\wheel\CMenu.js" />
+    <Content Include="Scripts\wheel\CPreloader.js" />
+    <Content Include="Scripts\wheel\createjs-2014.12.12.min.js" />
+    <Content Include="Scripts\wheel\ctl_utils.js" />
+    <Content Include="Scripts\wheel\CToggle.js" />
+    <Content Include="Scripts\wheel\CVector2.js" />
+    <Content Include="Scripts\wheel\jquery-2.0.3.min.js" />
+    <Content Include="Scripts\wheel\sprite_lib.js" />
+    <Content Include="Scripts\wheel\tt-new\CFormatText-TT.js" />
+    <Content Include="Scripts\wheel\tt-new\CGame-TT.js" />
+    <Content Include="Scripts\wheel\tt-new\CHelpPanel.js" />
+    <Content Include="Scripts\wheel\tt-new\CHelpPanel2.js" />
+    <Content Include="Scripts\wheel\tt-new\CHelpPanel3.js" />
+    <Content Include="Scripts\wheel\tt-new\CHelpPanel4.js" />
+    <Content Include="Scripts\wheel\tt-new\CHelpPanel5.js" />
+    <Content Include="Scripts\wheel\tt-new\CHelpPanel6.js" />
+    <Content Include="Scripts\wheel\tt-new\CInterface-TT.js" />
+    <Content Include="Scripts\wheel\tt-new\CLeds-TT.js" />
+    <Content Include="Scripts\wheel\tt-new\CMain-TT.js" />
+    <Content Include="Scripts\wheel\tt-new\CTextButton-TT.js" />
+    <Content Include="Scripts\wheel\tt-new\CWheel-TT.js" />
+    <Content Include="Scripts\wheel\tt-new\settings-TT.js" />
+    <Content Include="sprites\audio_icon.png" />
+    <Content Include="sprites\bg_menu.jpg" />
+    <Content Include="sprites\but_back.png" />
+    <Content Include="sprites\but_play.png" />
+    <Content Include="sprites\dix2.png" />
+    <Content Include="sprites\msg_box.png" />
+    <Content Include="sprites\overlay_info.png" />
+    <Content Include="sprites\progress_bar.png" />
+    <Content Include="sprites\toto\bg_game-tt.png" />
+    <Content Include="sprites\toto\bg_history_tt.png" />
+    <Content Include="sprites\toto\bg_lose_tt.png" />
+    <Content Include="sprites\toto\bg_point_tt.png" />
+    <Content Include="sprites\toto\bg_turnover_tt.png" />
+    <Content Include="sprites\toto\bg_win_tt.png" />
+    <Content Include="sprites\toto\but_plus-TT.png" />
+    <Content Include="sprites\toto\but_spin-TT.png" />
+    <Content Include="sprites\toto\history-TT.png" />
+    <Content Include="sprites\toto\info-tt.png" />
+    <Content Include="sprites\toto\leds3.png" />
+    <Content Include="sprites\toto\toa_toto.png" />
+    <Content Include="sprites\toto\wheel-tt.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -227,7 +278,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54366</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

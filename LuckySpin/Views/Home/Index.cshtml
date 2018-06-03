@@ -1,31 +1,130 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Lucky Spin";
+    Layout = null;
 }
+<html>
+<head>
+    <title>Lucky Spin</title>
+    <script type="text/javascript">
+        function requestFullScreen() {
+            var element = document.body;
+            // Supports most browsers and their versions.
+            var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+            if (requestMethod) { // Native full screen.
+                requestMethod.call(element);
+            } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+                var wscript = new ActiveXObject("WScript.Shell");
+                if (wscript !== null) {
+                    wscript.SendKeys("{F11}");
+                }
+            }
+            else {
+                // document.getElementById("warning-message2").style.display = "block";
+            }
+            document.getElementById("warning-message2").style.display = "none";
+            document.getElementById("masking").style.display = "block";
+            trigger_fullscreen = 1;
+        }
+    </script>
+    @Styles.Render("~/css/wheel")
+    <script src="/Scripts/wheel/jquery-2.0.3.min.js"></script>
+    <script src="/Scripts/wheel/createjs-2014.12.12.min.js"></script>
+    @Scripts.Render("~/script/wheel")
+    @*Settings*@
+    <script>
+        var _$_bbc7 = ["0", "ZONK", "150K", "50K", "75K", "100K", "game_start", "on", "save_score", "restart", "ready", "ZONK", "350K", "10K", "25K", "35K"];
+        $(document)["ready"](function () {
+            var a = new CMain(
+                {
+                    start_credit: "0", start_bet: "0", bet_offset: "0", max_bet: "0",
+                    njancjknl: ["ZONK", "150K", "50K", "75K", "100K", "ZONK", "350K", "10K", "25K", "35K", "ZONK", "150K", "50K", "75K", "100K", "ZONK", "350K", "10K", "25K", "35K"],
+                    ancklanlkn: [0, 150000, 50000, 75000, 100000, 0, 350000, 10000, 25000, 35000, 0, 150000, 50000, 75000, 100000, 0, 350000, 10000, 25000, 35000],
+                    klanklcnaklasdac: [120, 10, 10, 10, 10, 120, 10, 10, 10, 10, 120, 10, 10, 10, 10, 120, 10, 10, 10, 10],
+                    anim_idle_change_frequency: 3000,
+                    led_anim_idle1_timespeed: 2000,
+                    led_anim_idle2_timespeed: 200,
+                    led_anim_idle3_timespeed: 150,
+                    led_anim_spin_timespeed: 50,
+                    led_anim_win_duration: 5000,
+                    led_anim_win1_timespeed: 300,
+                    led_anim_win2_timespeed: 50,
+                    led_anim_lose_duration: 5000
+                });
+            $(a)["on"]("game_start", function (b) { });
+            $(a)["on"]("save_score", function (b, c, d) { });
+            $(a)["on"]("restart", function (b) { })
+        });
+        var numb_kupn = 10;
+        lastus = ["ADE*****", "PLE*****", "CHA*****", "ELI*****", "EBE*****", "ALK*****"];
+        lastnm = ["Rp. 5.000", "Rp. 10.000", "Rp. 5.000", "Rp. 8.000", "Rp. 33.000", "Rp. 15.000"];
+        toprz = [500000, 5500000, 15500000, 60500000];
+        tokup = ["1", "2", "4", "6"];
+        var gamename = "DEWATOGEL"; var usidxx = "AKBAR077"; var announcActive = 0; var announcTitle = 'Dewafortune Special Lebaran';
+        var announcContent = 'RGFsYW0gTWVtcGVyaW5nYXRpIEhhcmkgUmF5YSBJZHVsIEZpdHJpLCBEZXdhZm9ydHVuZSBNZW1iZXJpa2FuIEJlcmJhZ2FpIEJvbnVzIFNwZWNpYWwgeWFpdHUgOgoKMS4gQm9udXMgRnJlZSBMdWNreSBTcGluIDJ4IExpcGF0CjIuIFRpa2V0IEZyZWUgTHVja3kgU3BpbiAyeCBMaXBhdAozLiBQb2ludCBab25rIFJwLjUuMDAwIERlbmdhbiBNaW5pbWFsIFJlZWRlbSBScC4xMDAuMDAwCkJvbnVzIERld2Fmb3J0dW5lIFNwZWNpYWwgTGViYXJhbiBpbmkgYmVybGFrdSBkYXJpIHRhbmdnYWwgMjUgSnVuaSAyMDE3IHMvZCAyNiBKdW5pIDIwMTcKClNlbGFtYXQgSGFyaSBSYXlhIElkdWwgRml0cmkgMTQzOCBILCBNb2hvbiBNYWFmIExhaGlyIGRhbiBCYXRpbg==';
+        var frm_clmks = "aHR0cHM6Ly9kZXdhZm9ydHVuZS5jb20vYXV0aC9sb2dpbl9kZWZvci5waHA/dXNlcmlkPWFrYmFyMDc3JnNlc3NpZD02NjUyNDcmYWNjZXNzX3Rva2VuPWNkYTlhNGFkYjY2ZWRmMGJhZGUxZjQ1MmJkMDJiOTk1JmNsYWltPTE=";
+        var rturl = 'aHR0cHM6Ly9kZXdhZm9ydHVuZS5jb20vYXV0aC9sb2dpbl9kZWZvci5waHA/dXNlcmlkPWFrYmFyMDc3JnNlc3NpZD02NjUyNDcmYWNjZXNzX3Rva2VuPWNkYTlhNGFkYjY2ZWRmMGJhZGUxZjQ1MmJkMDJiOTk1';
+        var spcprz = [""];
+        trs_prz = ["0018052102471070661874", "0018051708572858376475", "0018051608285912292680", "0018051507382967217424", "0018051107570852408211", "0018051107563531129063", "0018051107560330842715", "NULL", "NULL", "NULL"];
+        date_prz = ["14:47:10 21-05-2018", "08:57:29 17-05-2018", "20:29:00 16-05-2018", "19:38:29 15-05-2018", "19:57:09 11-05-2018", "19:56:35 11-05-2018", "19:56:03 11-05-2018", "NULL", "NULL", "NULL"];
+        hasil_prz = ["ZONK", "ZONK", "ZONK", "ZONK", "ZONK", "ZONK", "ZONK", "NULL", "NULL", "NULL"];
+        var jum_line = "7";
+        var point_zonk = "18.000";
+        var def_point = "1000";
+        var def_redeem = "50000";
+    </script>
+    <script language="javascript">
+        $(document).ready(function () {
+            setInterval(function () {
+                var $sample = $("body");
+                if ($sample.is(":hover")) {
+                    window.innerDocClick = true;
+                } else {
+                    window.innerDocClick = false;
+                }
+            });
+        });
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        window.onhashchange = function () {
+            if (window.innerDocClick) {
+            } else {
+                alert("Maaf, anda belum menyelesaikan tugas anda");
+            }
+        };
+    </script>
+    <script language="JavaScript">
+        var message="Function Disabled!"; function clickIE4(){ if (event.button==2){ return false; } } function clickNS4(e){ if (document.layers||document.getElementById&&!document.all){ if (e.which==2||e.which==3){ return false; } } } if (document.layers){ document.captureEvents(Event.MOUSEDOWN); document.onmousedown=clickNS4; } else if (document.all&&!document.getElementById){ document.onmousedown=clickIE4; } document.oncontextmenu=new Function("return false") 
+ 
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 85 || e.keyCode === 117)) {//Alt+c, Alt+v will also be disabled sadly.
+                console.log("not allowed");
+            }
+            return false;
+        }; 
+
+    </script>   
+    <style>
+        #warning-message { display: none; }
+        @@media only screen and (orientation:portrait){
+            #masking { display:none; }
+            #warning-message { display:block; }
+        }
+        @@media only screen and (orientation:landscape){
+            #warning-message { display:none; }
+            #masking { display:block; }
+        }
+    </style>
+</head>
+<body ondragstart="return false;" ondrop="return false;" class="visible" style="">
+    <div id="warning-message" style="width: 100%;height: 100%;background: #000;text-align: center;padding: 100px 0px;font-size:35px;color:#b6a6fd;">
+        Silahkan Ubah Tampilan Menjadi Landscape Untuk Bermain    <br>
+        <img src="/images/rotate.gif">
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <div id="masking">
+        <div style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%;z-index:0'"></div>
+        <canvas id="canvas" class="ani_hack" width="1920" height="1076" style="width: 1348.64px; height: 755.798px; top: 0px; left: -179.818px; z-index: 20;"> </canvas>
+        <marquee style="z-index: 21;position: absolute;color: #fff;bottom: 6;">PERHATIAN!!! Facebook Dewafortune sudah kami tutup, Waspada Kepada Tindak Penipuan Yang Mengatas namakan Dewafortune. Dewafortune tidak pernah Meminta untuk Transfer sejumlah uang untuk Memberikan free Spin. Free Spin di Dapat dari Hasil Turnover Player bermain di dalam Game.</marquee>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+    <div id="bgx00897_bn01"> </div>
+</body>
+</html>
