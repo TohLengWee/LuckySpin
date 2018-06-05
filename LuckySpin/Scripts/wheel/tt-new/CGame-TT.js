@@ -135,7 +135,7 @@ function CGame(oData){
                     success: function(data)
                     {   
                     }
-                    });
+                 });
                 
         //CALCULATE ROTATION
         var iNumSpinFake = MIN_FAKE_SPIN + Math.floor(Math.random()*3);
