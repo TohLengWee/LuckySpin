@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Security;
-using LuckySpin.Controllers;
+using LuckySpin.Enums;
 
 namespace LuckySpin.Models.Register
 {

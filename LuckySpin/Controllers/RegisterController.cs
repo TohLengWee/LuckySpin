@@ -21,13 +21,4 @@ namespace LuckySpin.Controllers
             return RedirectToAction("Index", "Home");
         }
     }
-
-    public enum Bank
-    {
-        BCA,
-        MANDIRI,
-        BRI,
-        BNI,
-        CIMB
-    }
 }
