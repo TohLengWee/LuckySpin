@@ -166,6 +166,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\register.css" />
     <Content Include="Content\signin.css" />
     <Content Include="Content\wheel\main-DB.css" />
     <Content Include="Content\wheel\reset.css" />
@@ -255,6 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\register\" />
     <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
