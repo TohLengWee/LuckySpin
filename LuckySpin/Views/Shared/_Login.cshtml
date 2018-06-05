@@ -1,0 +1,66 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Lucky Spin";
+}
+
+<script>
+    $(document).ready(function() {
+        $("#loginSubmit").click(submitForm);
+    });
+
+    function submitForm() {
+        if (!validateUsername()) {
+            alert("");
+            return;
+        }
+
+        if (!validatePassword()) {
+            alert("");
+            return;
+        }
+
+        var formData = {
+            Username : $("#username").val(),
+            Password : $("password").val()
+        };
+
+        $.ajax({
+            method: "POST",
+            url: "/Home/Login",
+            data: formData
+        });
+    }
+
+    function validateUsername() {
+        var username = $("#username").val();
+        return username.length > 0;
+    }
+
+    function validatePassword() {
+        var password = $("#password").val();
+        return password.length > 0;
+    }
+</script>
+
+<div class="modal fade" id="login-modal" role="dialog" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="padding:35px 50px;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+            </div>
+            <div class="media-body">
+                <form>
+                    <input type="text" id="username" name="username" placeholder="Username" tabindex="1">
+                    <input type="password" id="password" name="password" placeholder="Password" tabindex="2">
+                    <input type="button" id="loginSubmit" value="Login">
+                    @Html.AntiForgeryToken()
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#">Register</a> - <a href="#">Lupa Password</a>
+            </div>
+        </div>
+    </div>
+</div>
