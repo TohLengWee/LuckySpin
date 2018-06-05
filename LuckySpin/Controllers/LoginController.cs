@@ -2,8 +2,9 @@
 
 namespace LuckySpin.Controllers
 {
-    public class HomeController : Controller
+    public class LoginController : Controller
     {
+        // GET: Login
         public ActionResult Index()
         {
             return View();
