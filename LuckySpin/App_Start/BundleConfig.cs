@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace LuckySpin
 {
@@ -35,6 +34,9 @@ namespace LuckySpin
                     "~/Scripts/wheel/jquery-*",
                     "~/Scripts/wheel/tt-new/*.js",
                     "~/Scripts/wheel/*.js"));
+
+            bundles.Add(new ScriptBundle("~/script/signIn").Include(
+                "~/Scripts/signin.js"));
         }
     }
 }

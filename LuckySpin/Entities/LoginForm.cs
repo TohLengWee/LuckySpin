@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LuckySpin.Entiies
+namespace LuckySpin.Entities
 {
     public class LoginForm
     {

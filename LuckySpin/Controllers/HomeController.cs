@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Web.Mvc;
-using LuckySpin.Entiies;
+using LuckySpin.Entities;
+using LuckySpin.Repositories;
 
 namespace LuckySpin.Controllers
 {
     public class HomeController : Controller
     {
+        public IAccountDb AccountDb { get; set; }
+
         public ActionResult Index()
         {
             return View();
@@ -18,28 +21,15 @@ namespace LuckySpin.Controllers
             try
             {
                 form.Validate();
-
+                var customer = AccountDb.Login(form);
+                UserSessionContext.CurrentUser = new UserSession {Customer = customer};
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                return Json(new { Result = "Failed", Message = exception.Message });
+                return RedirectToAction("Index");
             }
 
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return RedirectToAction("Index", "Main");
         }
     }
 }
