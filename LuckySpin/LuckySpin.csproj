@@ -263,6 +263,7 @@
     <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Main\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <None Include="Scripts\LuckySpin.back" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
