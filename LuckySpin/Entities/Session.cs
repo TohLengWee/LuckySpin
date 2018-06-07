@@ -17,17 +17,4 @@ namespace LuckySpin.Entities
             set { HttpContext.Current.Session[UserSession.SessionName] = value; }
         }
     }
-
-    public class UserSession
-    {
-        public const string SessionName = "UserSession";
-        public Customer Customer { get; set; }
-    }
-
-    public class Customer
-    {
-        public int CustomerId { get; set; }
-        public string Username { get; set; }
-
-    }
 }
