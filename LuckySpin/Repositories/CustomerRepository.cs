@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -9,12 +10,13 @@ namespace LuckySpin.Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
-        private IDbConnection _db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+        private readonly IDbConnection _db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
-        public bool CreateCustomer(Customer customer)
+        public bool CreateCustomer(Customer c)
         {
-            var sql = "Insert into Customer (Username, Password) values (@username, @password);";
-            return _db.Execute(sql, customer) == 1;
+            var sql = "Insert Into Customer (Username, Password, BillNumber, Bank, PhoneNumber, CreatedOn, ModifiedOn)" +
+                      $"Values ('{c.Username}', '{c.Password}', '{c.BillNumber}', '{c.Bank}', '{c.PhoneNumber}', GETDATE(), GETDATE());";
+            return _db.Execute(sql) == 1;
         }
 
         public Customer GetCustomerByUsername(string username)

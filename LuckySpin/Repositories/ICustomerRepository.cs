@@ -4,7 +4,7 @@ namespace LuckySpin.Repositories
 {
     public interface ICustomerRepository
     {
-        bool CreateCustomer(Customer customer);
+        bool CreateCustomer(Customer c);
         Customer GetCustomerByUsername(string username);
     }
 }
