@@ -1,4 +1,6 @@
-﻿namespace LuckySpin.Entities
+﻿using LuckySpin.Enums;
+
+namespace LuckySpin.Entities
 {
     public class Customer
     {
