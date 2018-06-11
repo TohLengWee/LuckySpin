@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using LuckySpin.Entities;
-using LuckySpin.Helpers;
 using LuckySpin.Models.Register;
 using LuckySpin.Repositories;
 
@@ -24,7 +23,7 @@ namespace LuckySpin.Controllers
                 return View("Index", registration);
             }
 
-            var customer = ConstructCustomer(registration);
+            var customer = new Customer(registration);
             _customerRepository.CreateCustomer(customer);
 
             return RedirectToAction("Index", "Home");
@@ -33,22 +32,6 @@ namespace LuckySpin.Controllers
         private bool UsernameAvailability(string username)
         {
             return _customerRepository.GetCustomerByUsername(username) == null;
-        }
-
-        private static Customer ConstructCustomer(Registration registration)
-        {
-            var hash = new PasswordHash(registration.Password);
-            byte[] hashBytes = hash.ToArray();
-
-            var customer = new Customer
-            {
-                Password = hashBytes,
-                BillNumber = registration.BillNumber,
-                Username = registration.Username,
-                PhoneNumber = registration.PhoneNumber,
-                Bank = (int)registration.Bank
-            };
-            return customer;
         }
     }
 }

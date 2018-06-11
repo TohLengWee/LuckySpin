@@ -2,10 +2,10 @@
 {
     public enum Bank
     {
-        BCA,
-        MANDIRI,
-        BRI,
-        BNI,
-        CIMB
+        BCA = 1,
+        MANDIRI = 2,
+        BRI = 3,
+        BNI = 4,
+        CIMB = 5
     }
 }
