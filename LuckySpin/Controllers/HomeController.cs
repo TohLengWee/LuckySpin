@@ -1,14 +1,9 @@
-﻿using System;
-using System.Web.Mvc;
-using LuckySpin.Entities;
-using LuckySpin.Helpers;
-using LuckySpin.Repositories;
+﻿using System.Web.Mvc;
 
 namespace LuckySpin.Controllers
 {
     public class HomeController : Controller
     {
-        public ICustomerRepository CustomerRepository = new CustomerRepository();
         public ActionResult Index()
         {
             /*
@@ -28,36 +23,6 @@ namespace LuckySpin.Controllers
             byte[] hashBytes = hash.ToArray();
             CustomerRepository.CreateCustomer(new Customer(){ Username = "user", Password = hashBytes});*/
             return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginForm form)
-        {
-            try
-            {
-                form.Validate();
-
-                var customer = CustomerRepository.GetCustomerByUsername(form.Username);
-                if (customer == null)
-                {
-                    throw new UnauthorizedAccessException("Invalid username/password");
-                }
-
-                byte[] hashBytes = customer.Password;
-                var hash = new PasswordHash(hashBytes);
-                if (!hash.Verify(form.Password))
-                    throw new UnauthorizedAccessException("Invalid username/password");
-
-                UserSessionContext.CurrentUser = new UserSession {Customer = customer};
-            }
-            catch (Exception ex)
-            {
-                ViewBag["Error"] = ex.Message;
-                return RedirectToAction("Index");
-            }
-
-            return RedirectToAction("Index", "Main");
         }
     }
 }

@@ -21,8 +21,18 @@ function submitForm() {
 
     $.ajax({
         method: "POST",
-        url: "/Home/Login",
-        data: formData
+        url: "/Login",
+        data: formData,
+        success: function (response) {
+            if (response.Success) {
+                window.location.href = response.Url;
+            } else {
+                alert(response.Message);
+            }
+        }, error: function() {
+            alert("Login tak sah!");
+        }
+
     });
 }
 
