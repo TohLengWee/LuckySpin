@@ -13,14 +13,14 @@ namespace LuckySpin.Repositories
 
         public bool CreateCustomer(Customer customer)
         {
-            var sql = "Insert Into Customer (Username, Password, BillNumber, Bank, PhoneNumber, CreatedOn, ModifiedOn)" +
-                      "Values (@Username, @Password, @BillNumber, @Bank, @PhoneNumber, GETDATE(), GETDATE());";
+            var sql = "Insert Into Customer (Username, Password, BillNumber, Bank, PhoneNumber, Status, CreatedOn, ModifiedOn)" +
+                      "Values (@Username, @Password, @BillNumber, @Bank, @PhoneNumber, 0, GETDATE(), GETDATE());";
             return _db.Execute(sql, customer) == 1;
         }
 
         public Customer GetCustomerByUsername(string username)
         {
-            var sql = "SELECT [CustomerID],[Username],[Password], [BillNumber], [Bank], [PhoneNumber], [CreatedOn], [ModifiedOn]  FROM [Customer] WHERE username = @username";
+            var sql = "SELECT [CustomerID],[Username],[Password], [BillNumber], [Bank], [PhoneNumber], [Status], [CreatedOn], [ModifiedOn]  FROM [Customer] WHERE username = @username";
             return _db.Query<Customer>(sql, new {username}).SingleOrDefault();
         }
     }
