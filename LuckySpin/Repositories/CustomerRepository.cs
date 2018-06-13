@@ -1,4 +1,6 @@
-﻿using System.Configuration;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -20,8 +22,15 @@ namespace LuckySpin.Repositories
 
         public Customer GetCustomerByUsername(string username)
         {
-            var sql = "SELECT [CustomerID],[Username],[Password], [BillNumber], [Bank], [PhoneNumber], [Status], [CreatedOn], [ModifiedOn]  FROM [Customer] WHERE username = @username";
+            var sql = "SELECT [CustomerID],[Username],[Password], [BillNumber], [Bank], [PhoneNumber], [Status], [CreatedOn], [ModifiedOn] FROM [Customer] WHERE username = @username";
             return _db.Query<Customer>(sql, new {username}).SingleOrDefault();
+        }
+
+        public IEnumerable<Customer> GetAllCustomers()
+        {
+            var sql =
+                "SELECT [CustomerID],[Username],[Password], [BillNumber], [Bank], [PhoneNumber], [Status], [CreatedOn], [ModifiedOn]  FROM [Customer]";
+            return _db.Query<Customer>(sql);
         }
     }
 }
