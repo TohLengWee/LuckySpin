@@ -20,7 +20,7 @@ namespace LuckySpin.Repositories
 
         public Customer GetCustomerByUsername(string username)
         {
-            var sql = "SELECT [CustomerID],[Username],[Password] FROM [Customer] WHERE username = @username";
+            var sql = "SELECT [CustomerID],[Username],[Password], [BillNumber], [Bank], [PhoneNumber], [CreatedOn], [ModifiedOn]  FROM [Customer] WHERE username = @username";
             return _db.Query<Customer>(sql, new {username}).SingleOrDefault();
         }
     }

@@ -1,4 +1,5 @@
-﻿using LuckySpin.Helpers;
+﻿using System;
+using LuckySpin.Helpers;
 using LuckySpin.Models.Register;
 
 namespace LuckySpin.Entities
@@ -11,6 +12,8 @@ namespace LuckySpin.Entities
         public string BillNumber { get; set; }
         public int Bank { get; set; }
         public string PhoneNumber { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime ModifiedOn { get; set; }
 
         public Customer(){}
 
