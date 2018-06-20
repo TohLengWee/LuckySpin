@@ -27,5 +27,12 @@ namespace LuckySpin.Controllers
             var success = _customerRepository.ToggleSuspend(customerId);
             return Json(new {Success = success});
         }
+
+        [HttpPost]
+        public ActionResult ActivateCustomer(int customerId)
+        {
+            var success = _customerRepository.ActivateCustomer(customerId);
+            return Json(new {Success = success});            
+        }
     }
 }

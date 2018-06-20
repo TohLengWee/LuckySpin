@@ -38,5 +38,11 @@ namespace LuckySpin.Repositories
             var sql = "Update Customer Set Status = Status ^ 2 Where CustomerID = @customerId";
             return _db.Execute(sql, new {customerId}) == 1;
         }
+
+        public bool ActivateCustomer(int customerId)
+        {
+            var sql = "Update Customer Set Status = Status | 1 Where CustomerID = @customerId";
+            return _db.Execute(sql, new {customerId}) == 1;
+        }
     }
 }

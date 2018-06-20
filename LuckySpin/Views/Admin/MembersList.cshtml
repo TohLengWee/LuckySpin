@@ -28,13 +28,31 @@
         $.ajax({
             method: "POST",
             url: "ToggleSuspend",
-            data: {customerId:customerId},
-            success: function(response) {
+            data: { customerId: customerId },
+            success: function (response) {
                 if (response.Success) {
                     alert("Update Succesfully.");
                 }
-            }, error: function() {
+            }, error: function () {
                 alert("Update Failed.");
+            }
+        });
+    }
+
+    function activate(customerId) {
+        $.ajax({
+            method: "POST",
+            url: "ActivateCustomer",
+            data: { customerId: customerId },
+            success: function (response) {
+                if (response.Success) {
+                    alert("Account Activated.");
+                    $('#activate-' + customerId).attr('class', 'label label-success');
+                    $('#activate-' + customerId).text('Activated');
+                    $('#activate-' + customerId).prop('onclick', null).off('click');
+                }
+            }, error: function () {
+                alert("Account Activation Failed.");
             }
         });
     }
@@ -67,7 +85,14 @@
                             <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
                             <td>@Html.DisplayFor(modelItem => item.CreatedOn)</td>
                             <td>
-
+                                @if (item.IsActivated())
+                                {
+                                    <span id="activate-@item.CustomerId" class="label label-success">Activated</span>
+                                }
+                                else
+                                {
+                                    <span id="activate-@item.CustomerId" class="label label-default" onclick="activate(@item.CustomerId)">Click To Activate</span>
+                                }
                             </td>
                             <td>
                                 <input type="checkbox" id="toggle-suspend-@item.CustomerId" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="danger" data-offstyle="success" data-size="mini" onchange="toggleSuspend(@item.CustomerId)">
