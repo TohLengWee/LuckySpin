@@ -32,5 +32,11 @@ namespace LuckySpin.Repositories
                 "SELECT [CustomerID],[Username],[Password], [BillNumber], [Bank], [PhoneNumber], [Status], [CreatedOn], [ModifiedOn]  FROM [Customer]";
             return _db.Query<Customer>(sql);
         }
+
+        public bool ToggleSuspend(int customerId)
+        {
+            var sql = "Update Customer Set Status = Status ^ 2 Where CustomerID = @customerId";
+            return _db.Execute(sql, new {customerId}) == 1;
+        }
     }
 }

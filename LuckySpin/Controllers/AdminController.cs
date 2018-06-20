@@ -20,5 +20,12 @@ namespace LuckySpin.Controllers
             List<Customer> customers = _customerRepository.GetAllCustomers().ToList();
             return View(customers);
         }
+
+        [HttpPost]
+        public ActionResult ToggleSuspend(int customerId)
+        {
+            var success = _customerRepository.ToggleSuspend(customerId);
+            return Json(new {Success = success});
+        }
     }
 }

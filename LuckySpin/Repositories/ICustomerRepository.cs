@@ -8,5 +8,6 @@ namespace LuckySpin.Repositories
         bool CreateCustomer(Customer customer);
         Customer GetCustomerByUsername(string username);
         IEnumerable<Customer> GetAllCustomers();
+        bool ToggleSuspend(int customerId);
     }
 }
