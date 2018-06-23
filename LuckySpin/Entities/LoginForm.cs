@@ -11,7 +11,7 @@ namespace LuckySpin.Entities
         {
             if (string.IsNullOrEmpty(Username)) { throw new ArgumentException("Invalid username"); }
 
-            if (string.IsNullOrEmpty(Password))
+            if (string.IsNullOrEmpty(Password) && Password.Length >= 7)
             {
                 throw new ArgumentException("Invalid username/ password");
             }

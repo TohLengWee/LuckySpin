@@ -51,7 +51,7 @@ function validateUsername() {
 
 function validatePassword() {
     var password = $("#inputPassword").val();
-    return password.length > 7;
+    return password.length >= 7;
 }
 
 function handleRememberMe() {
