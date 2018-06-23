@@ -1,4 +1,6 @@
-﻿using LuckySpin.Helpers;
+﻿using System;
+using LuckySpin.Enums;
+using LuckySpin.Helpers;
 using LuckySpin.Models.Register;
 
 namespace LuckySpin.Entities
@@ -9,8 +11,11 @@ namespace LuckySpin.Entities
         public string Username { get; set; }
         public byte[] Password { get; set; }
         public string BillNumber { get; set; }
-        public int Bank { get; set; }
+        public Bank Bank { get; set; }
         public string PhoneNumber { get; set; }
+        public CustomerStatus Status { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime ModifiedOn { get; set; }
 
         public Customer(){}
 
@@ -23,7 +28,17 @@ namespace LuckySpin.Entities
             BillNumber = registration.BillNumber;
             Username = registration.Username;
             PhoneNumber = registration.PhoneNumber;
-            Bank = (int) registration.Bank;
+            Bank = (Bank)registration.Bank;
+        }
+
+        public bool IsActivated()
+        {
+            return Status.HasFlag(CustomerStatus.Activated);
+        }
+
+        public bool IsSuspended()
+        {
+            return Status.HasFlag(CustomerStatus.Suspended);
         }
     }
 }
