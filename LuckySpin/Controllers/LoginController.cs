@@ -24,6 +24,11 @@ namespace LuckySpin.Controllers
                     throw new UnauthorizedAccessException("Username/password yang tak sah.");
                 }
 
+                if (!customer.IsActivated() || customer.IsSuspended())
+                {
+                    throw new UnauthorizedAccessException("Account yang tak sah.");
+                }
+
                 byte[] hashBytes = customer.Password;
                 var hash = new PasswordHash(hashBytes);
                 if (!hash.Verify(form.Password))
