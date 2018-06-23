@@ -1,5 +1,11 @@
 ﻿$(document).ready(function () {
-    $("#formSignin").click(submitForm);
+    $("#loginBtn").click(submitForm);
+    $("#formSignin").on("keydown", function (e) {
+        if (e && e.keyCode === 13) {
+            submitForm();
+        }
+    });
+    handleRememberMe();
 });
 
 function submitForm() {
@@ -12,6 +18,8 @@ function submitForm() {
         alert("Tidak sah password.");
         return;
     }
+
+    rememberMe();
 
     var formData = {
         Username: $("#inputUsername").val(),
@@ -43,5 +51,25 @@ function validateUsername() {
 
 function validatePassword() {
     var password = $("#inputPassword").val();
-    return password.length > 0;
+    return password.length > 7;
+}
+
+function handleRememberMe() {
+    var remember = Cookies.get('remember');
+    if (remember == "true") {
+        $("#rememberMe").prop("checked", true);
+        var username = Cookies.get('username');
+        $("#inputUsername").val(username);
+    }
+}
+
+function rememberMe() {
+    if (!$("#rememberMe").prop("checked")) {
+        Cookies.remove("remember");
+        Cookies.remove("username");
+        return;
+    }
+    var username = $("#inputUsername").val();
+    Cookies.set('remember', "true", { expires: 7 });
+    Cookies.set('username', username, { expires: 7 });
 }

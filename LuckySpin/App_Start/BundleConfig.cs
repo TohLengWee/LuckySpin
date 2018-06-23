@@ -35,8 +35,10 @@ namespace LuckySpin
                     "~/Scripts/wheel/tt-new/*.js",
                     "~/Scripts/wheel/*.js"));
 
-            bundles.Add(new ScriptBundle("~/script/signIn").Include(
-                "~/Scripts/signin.js"));
+            bundles.Add(new ScriptBundle("~/script/login").Include(
+                "~/Scripts/js-cookie.js",
+                "~/Scripts/login.js"
+                ));
         }
     }
 }
