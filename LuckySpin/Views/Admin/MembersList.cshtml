@@ -46,8 +46,9 @@
             data: { customerId: customerId },
             success: function (response) {
                 if (response.Success) {
-                    alert("Account Activated.");
+                    //alert("Account Activated.");
                     $('#activate-' + customerId).attr('class', 'label label-success');
+                    $('#activate-' + customerId).attr('style', '');
                     $('#activate-' + customerId).text('Activated');
                     $('#activate-' + customerId).prop('onclick', null).off('click');
                 }
@@ -91,7 +92,7 @@
                                 }
                                 else
                                 {
-                                    <span id="activate-@item.CustomerId" class="label label-default" onclick="activate(@item.CustomerId)">Click To Activate</span>
+                                    <span id="activate-@item.CustomerId" class="label label-default" style="cursor: pointer;" onclick="activate(@item.CustomerId)">Click To Activate</span>
                                 }
                             </td>
                             <td>
