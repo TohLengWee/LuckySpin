@@ -17,7 +17,7 @@ namespace LuckySpin.Filters
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary
                 {
                     { "action", "Index"},
-                    { "controller", "Login" }
+                    { "controller", "Home" }
                 });
             }
         }
