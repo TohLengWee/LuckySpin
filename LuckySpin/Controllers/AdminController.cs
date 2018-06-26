@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Web.Mvc;
 using LuckySpin.Entities;
+using LuckySpin.Models;
+using LuckySpin.Models.ViewModels;
 using LuckySpin.Repositories;
 
 namespace LuckySpin.Controllers
@@ -9,6 +11,7 @@ namespace LuckySpin.Controllers
     public class AdminController : Controller
     {
         private readonly ICustomerRepository _customerRepository = new CustomerRepository();
+        private readonly IGameRepository _gameRepository = new GameRepository();
 
         public ActionResult Index()
         {
@@ -19,6 +22,18 @@ namespace LuckySpin.Controllers
         {
             List<Customer> customers = _customerRepository.GetAllCustomers().ToList();
             return View(customers);
+        }
+
+        public ActionResult MemberDetail(string username)
+        {
+            var customer = _customerRepository.GetCustomerByUsername(username);
+            var viewModel = new MemberDetailViewModel()
+            {
+                Customer = customer,
+                Tickets = _gameRepository.GetActiveTickets(customer)
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]

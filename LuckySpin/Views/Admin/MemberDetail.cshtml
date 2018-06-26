@@ -1,0 +1,33 @@
+﻿@model LuckySpin.Models.ViewModels.MemberDetailViewModel
+
+@{
+    ViewBag.Title = "Member Detail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h2>@Model.Customer.Username</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Count</th>
+                <th>Max Winning</th>
+                <th>Board Type</th>
+                <th>Expiry On</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ticket in Model.Tickets)
+            {
+                <tr>
+                    <td>@ticket.SpinCount</td>
+                    <td>@ticket.MaxWinning</td>
+                    <td>@ticket.SpinBoard</td>
+                    <td>@ticket.ExpiryOn</td>
+                    <td>@ticket.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
