@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using Dapper;
 using LuckySpin.Entities;
 using LuckySpin.Models.Game;
@@ -18,7 +19,7 @@ namespace LuckySpin.Repositories
 
         public Ticket GetCurrentTicket(Customer customer)
         {
-            return _db.QueryFirst<Ticket>("select top 1 * from ticket order by createdon desc", new {customer.CustomerId});
+            return _db.Query<Ticket>("select top 1 * from ticket order by createdon desc", new {customer.CustomerId}).FirstOrDefault();
         }
     }
 }
