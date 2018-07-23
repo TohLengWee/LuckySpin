@@ -10,7 +10,7 @@ namespace LuckySpin.Controllers
 
         public ActionResult Index()
         {
-            var currentTicket = GameRepository.GetActiveTickets(UserSessionContext.CurrentUser.Customer);
+            var currentTicket = GameRepository.GetActiveVouchers(UserSessionContext.CurrentUser.Customer);
 
             return View();
         }

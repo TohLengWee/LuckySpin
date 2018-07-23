@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Web.Mvc;
 using LuckySpin.Entities;
-using LuckySpin.Models;
 using LuckySpin.Models.ViewModels;
 using LuckySpin.Repositories;
 
@@ -30,7 +29,7 @@ namespace LuckySpin.Controllers
             var viewModel = new MemberDetailViewModel()
             {
                 Customer = customer,
-                Tickets = _gameRepository.GetActiveTickets(customer)
+                Tickets = _gameRepository.GetActiveVouchers(customer)
             };
 
             return View(viewModel);
