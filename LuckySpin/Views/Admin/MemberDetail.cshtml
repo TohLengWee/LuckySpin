@@ -18,14 +18,14 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var ticket in Model.Tickets)
+            @foreach (var voucher in Model.Vouchers)
             {
                 <tr>
-                    <td>@ticket.SpinCount</td>
-                    <td>@ticket.MaxWinning</td>
-                    <td>@ticket.SpinBoard</td>
-                    <td>@ticket.ExpiryOn</td>
-                    <td>@ticket.Status</td>
+                    <td>@voucher.SpinCount</td>
+                    <td>@voucher.MaxWinning</td>
+                    <td>@voucher.SpinBoard</td>
+                    <td>@voucher.ExpiryOn</td>
+                    <td>@voucher.Status</td>
                 </tr>
             }
         </tbody>

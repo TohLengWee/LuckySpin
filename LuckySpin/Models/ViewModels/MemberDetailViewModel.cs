@@ -7,6 +7,6 @@ namespace LuckySpin.Models.ViewModels
     public class MemberDetailViewModel
     {
         public Customer Customer { get; set; }
-        public List<Ticket> Tickets { get; set; }
+        public List<Voucher> Vouchers { get; set; }
     }
 }

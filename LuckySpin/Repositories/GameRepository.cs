@@ -11,16 +11,16 @@ namespace LuckySpin.Repositories
 {
     public interface IGameRepository
     {
-        List<Ticket> GetActiveVouchers(Customer customer);
+        List<Voucher> GetActiveVouchers(Customer customer);
     }
 
     public class GameRepository: IGameRepository
     {
         private readonly IDbConnection _db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
-        public List<Ticket> GetActiveVouchers(Customer customer)
+        public List<Voucher> GetActiveVouchers(Customer customer)
         {
-            return _db.Query<Ticket>(@"select * from voucher 
+            return _db.Query<Voucher>(@"select * from voucher 
                                        where customerId = @customerId and expiryon > GetDate()
                                        order by createdon desc", new {customer.CustomerId}).ToList();
         }

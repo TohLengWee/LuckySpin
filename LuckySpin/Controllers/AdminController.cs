@@ -29,7 +29,7 @@ namespace LuckySpin.Controllers
             var viewModel = new MemberDetailViewModel()
             {
                 Customer = customer,
-                Tickets = _gameRepository.GetActiveVouchers(customer)
+                Vouchers = _gameRepository.GetActiveVouchers(customer)
             };
 
             return View(viewModel);

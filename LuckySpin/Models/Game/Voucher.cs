@@ -2,7 +2,7 @@
 
 namespace LuckySpin.Models.Game
 {
-    public class Ticket
+    public class Voucher
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }
