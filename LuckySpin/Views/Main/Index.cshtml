@@ -1,4 +1,5 @@
-﻿@{
+﻿@model LuckySpin.Models.Game.Voucher
+@{
     ViewBag.Title = "Lucky Spin";
     Layout = null;
 }
@@ -55,7 +56,7 @@
             $(a)["on"]("save_score", function (b, c, d) { });
             $(a)["on"]("restart", function (b) { })
         });
-        var numb_kupn = 10;
+        var numb_kupn = @Model.SpinCount;
         lastus = ["ADE*****", "PLE*****", "CHA*****", "ELI*****", "EBE*****", "ALK*****"];
         lastnm = ["Rp. 5.000", "Rp. 10.000", "Rp. 5.000", "Rp. 8.000", "Rp. 33.000", "Rp. 15.000"];
         toprz = [500000, 5500000, 15500000, 60500000];

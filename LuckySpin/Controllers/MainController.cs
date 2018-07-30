@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using LuckySpin.Entities;
+using LuckySpin.Models.Game;
 using LuckySpin.Repositories;
 
 namespace LuckySpin.Controllers
@@ -10,9 +12,14 @@ namespace LuckySpin.Controllers
 
         public ActionResult Index()
         {
-            var currentTicket = GameRepository.GetActiveVouchers(UserSessionContext.CurrentUser.Customer);
+            var vouchers = GameRepository.GetActiveVouchers(UserSessionContext.CurrentUser.Customer);
+            Voucher currentVoucher = new Voucher(){ SpinCount = 0};
+            if (vouchers != null && vouchers.Count > 0)
+            {
+                currentVoucher = vouchers.OrderBy(x => x.ExpiryOn).First();
+            }
 
-            return View();
+            return View("Index", currentVoucher);
         }
     }
 }
