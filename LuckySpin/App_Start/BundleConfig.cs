@@ -39,6 +39,9 @@ namespace LuckySpin
                 "~/Scripts/js-cookie.js",
                 "~/Scripts/login.js"
                 ));
+
+            bundles.Add(new StyleBundle("~/admin/css").Include(
+                "~/Content/admin.css"));
         }
     }
 }

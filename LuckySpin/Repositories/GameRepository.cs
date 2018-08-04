@@ -12,6 +12,7 @@ namespace LuckySpin.Repositories
     public interface IGameRepository
     {
         List<Voucher> GetActiveVouchers(Customer customer);
+        void AddVoucher(Voucher voucher);
     }
 
     public class GameRepository: IGameRepository
@@ -23,6 +24,11 @@ namespace LuckySpin.Repositories
             return _db.Query<Voucher>(@"select * from voucher 
                                        where customerId = @customerId and expiryon > GetDate()
                                        order by createdon desc", new {customer.CustomerId}).ToList();
+        }
+
+        public void AddVoucher(Voucher voucher)
+        {
+            _db.Query<Voucher>(@"insert into Voucher values (@customerId, @spinCount, @maxWinning, @spinBoard, @ExpiryOn, @Status, GetDate(), GetDate())", voucher);
         }
     }
 }

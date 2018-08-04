@@ -6,28 +6,79 @@
 }
 
 <div class="container">
-    <h2>@Model.Customer.Username</h2>
+    <h2>@Model.Customer.Username <i class="fas fa-plus-circle" title="Add Voucher" style="cursor: pointer;"  data-toggle="modal" data-target="#addVoucher"></i></h2> 
     <table class="table">
         <thead>
-            <tr>
-                <th>Count</th>
-                <th>Max Winning</th>
-                <th>Board Type</th>
-                <th>Expiry On</th>
-                <th>Status</th>
-            </tr>
+        <tr>
+            <th>Count</th>
+            <th>Max Winning</th>
+            <th>Board Type</th>
+            <th>Expiry On</th>
+            <th>Status</th>
+        </tr>
         </thead>
         <tbody>
-            @foreach (var voucher in Model.Vouchers)
-            {
-                <tr>
-                    <td>@voucher.SpinCount</td>
-                    <td>@voucher.MaxWinning</td>
-                    <td>@voucher.SpinBoard</td>
-                    <td>@voucher.ExpiryOn</td>
-                    <td>@voucher.Status</td>
-                </tr>
-            }
+        @foreach (var voucher in Model.Vouchers)
+        {
+            <tr>
+                <td>@voucher.SpinCount</td>
+                <td>@voucher.MaxWinning</td>
+                <td>@voucher.SpinBoard</td>
+                <td>@voucher.ExpiryOn</td>
+                <td>@voucher.Status</td>
+            </tr>
+        }
         </tbody>
     </table>
 </div>
+
+<div class="modal" tabindex="-1" role="dialog" id="addVoucher">
+    <form action="/admin/addvoucher" method="post">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Voucher</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="CustomerId" value="@Model.Customer.CustomerId"/>
+                    <div class="form-group">
+                        <label for="spinCount" class="font-weight-bold">Spin Count</label>
+                        <input type="text" name="SpinCount" class="form-control" id="spinCount" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="maxWinning" class="font-weight-bold">Max Winning</label>
+                        <input type="text" name="MaxWinning" class="form-control" id="maxWinning" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="boardType" class="font-weight-bold">Board Type</label>
+                        <input type="text" name="SpinBoard" class="form-control" id="boardType" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="expiryOn" class="font-weight-bold">Expiry On</label>
+                        <input type="text" name="ExpiryOn" class="form-control" id="expiryOn" value="1">
+                    </div>
+                    <div class="form-group">
+                        <span class="switch">
+                            <input type="checkbox" name="Status" class="switch-lg" id="switch-id">
+                            <label for="switch-id">Status</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    $('#expiryOn').datepicker({
+        uiLibrary: 'bootstrap4',
+        format: 'yyyy-mm-dd',
+        value: '@DateTime.Today.AddDays(10).ToString("yyyy-MM-dd")'
+    });
+</script>

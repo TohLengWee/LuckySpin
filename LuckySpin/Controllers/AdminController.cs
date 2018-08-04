@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Routing;
 using LuckySpin.Entities;
+using LuckySpin.Models.Game;
 using LuckySpin.Models.ViewModels;
 using LuckySpin.Repositories;
 
@@ -33,6 +35,14 @@ namespace LuckySpin.Controllers
             };
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AddVoucher(Voucher voucher)
+        {
+            _gameRepository.AddVoucher(voucher);
+
+            return RedirectToAction("MemberDetail", new RouteValueDictionary {{"username", "guoqiang"}});
         }
 
         [HttpPost]
