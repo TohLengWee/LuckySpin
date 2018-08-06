@@ -107,15 +107,23 @@ function CWheel (iX, iY){
         }
     };
     
-    this.spin = function(iValue,iTimeMult){
+    this.spin = function(iValue,iTimeMult, prize){
         if(DISABLE_SOUND_MOBILE === false || s_bMobile === false){
            createjs.Sound.play("start_reel");
            _oSpinSound = createjs.Sound.play("reel", {loop:-1});
            _oSpinSound.volume = 0.1;
         }
 		
-        createjs.Tween.get(_oWheelContainer).to({rotation:_oWheelContainer.rotation + iValue}, WHEEL_SPIN_TIMESPEED*iTimeMult, createjs.Ease.quartOut)//cubicOut
-                .call(function(){_oWheelContainer.rotation %= 360; s_oGame.releaseWheel(); if(DISABLE_SOUND_MOBILE === false || s_bMobile === false){_oSpinSound.stop();}});
+      createjs.Tween
+        .get(_oWheelContainer)
+        .to({ rotation: _oWheelContainer.rotation + iValue }, WHEEL_SPIN_TIMESPEED * iTimeMult, createjs.Ease.quartOut)//cubicOut
+        .call(function() {
+          _oWheelContainer.rotation %= 360;
+          s_oGame.releaseWheel(prize);
+          if (DISABLE_SOUND_MOBILE === false || s_bMobile === false) {
+             _oSpinSound.stop();
+          }
+        });
 		
     };
     

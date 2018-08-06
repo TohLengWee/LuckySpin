@@ -141,7 +141,7 @@ function CGame(oData){
         var iTimeMult = iNumSpinFake;
 
         //SPIN
-        _oWheel.spin(iRotValue, iTimeMult);
+        _oWheel.spin(iRotValue, iTimeMult, prize);
     };                 
     
     this.setNewRound = function(){
@@ -155,73 +155,49 @@ function CGame(oData){
         _iCurWin = -1;
     };
     
-    this.releaseWheel = function(){
+    this.releaseWheel = function(prize){
         _oInterface.disableSpin(true); 
-        _oInterface.refreshMoney(PRIZE[_iCurWin] * _iMultiply);
+        _oInterface.refreshMoney(prize * _iMultiply);
         
-        _iCurCredit += PRIZE[_iCurWin] * _iMultiply;
+        _iCurCredit += prize * _iMultiply;
         _oInterface.refreshCredit(_iCurCredit);
         
         _oInterface.animWin();
         
-        if(_iCurCredit < START_BET){
-            this.gameOver();
-        }        
+        //if(_iCurCredit < START_BET){
+        //    this.gameOver();
+        //}        
         if(_iMultiply > _iCurCredit/START_BET ){
             _iMultiply = Math.floor(_iCurCredit/START_BET);
             _iCurBet = _iMultiply * START_BET;
             _oInterface.refreshBet(_iCurBet);            
         }
 
-        prxsgdgfff = PRIZE[_iCurWin];
+        prxsgdgfff = prize;
         
-        if(PRIZE[_iCurWin] == null){
+      if (prize == null){
             _iGameState = STATE_LOSE;
-            if(DISABLE_SOUND_MOBILE === false || s_bMobile === false){
+            if (DISABLE_SOUND_MOBILE === false || s_bMobile === false) {
+                xosandjxhgdaasd = PRIZE_NAME[_iCurWin];
                 var _oHelpPanel = new CHelpPanel5();
-                window.setTimeout(function(){
-                    // parent.window.close()
-                    window.location = atob(rturl);
-                }, 8000);
             } 
         }
-        else if(PRIZE[_iCurWin] <= 0){
+      else if (prize <= 0){
             _iGameState = STATE_LOSE;
             if(DISABLE_SOUND_MOBILE === false || s_bMobile === false){
                 xosandjxhgdaasd = PRIZE_NAME[_iCurWin];
                 if(xosandjxhgdaasd == "ZONK"){
                     var _oHelpPanel = new CHelpPanel5();
-                    window.setTimeout(function(){
-                        // parent.window.close()
-                        window.location = atob(rturl);
-                    }, 8000);
                 }
                 else{
                     var _oHelpPanel = new CHelpPanel4();
-                    if( spcprz.indexOf(xosandjxhgdaasd) >= 0){
-                        window.location = atob(frm_clmks);
-                    }
-                    else {
-                        window.setTimeout(function(){
-                        // parent.window.close()
-                        window.location = atob(rturl);
-                    }, 8000);
-                    }
-                }   
-                // window.location="win.php";
-            }
+                }
+            }   
         } else {
             _iGameState = STATE_WIN;
             if(DISABLE_SOUND_MOBILE === false || s_bMobile === false){
-                xosandjxhgdaasd = "Rp." + (PRIZE[_iCurWin] + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+              xosandjxhgdaasd = "Rp." + (prize + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
                 var _oHelpPanel = new CHelpPanel4();
-                if( spcprz.indexOf(xosandjxhgdaasd) >= 0){
-                        window.location = atob(frm_clmks);
-                    }
-                else {
-                    window.setTimeout(function(){ parent.window.close()}, 8000);
-                }
-                // window.location="win.php";
             } 
         }
         

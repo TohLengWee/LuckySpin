@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using LuckySpin.Entities;
 using LuckySpin.Models.Game;
@@ -27,7 +28,9 @@ namespace LuckySpin.Controllers
 
         public JsonResult GetSpinResult()
         {
-            return Json(new {prize = 0}, JsonRequestBehavior.AllowGet);
+
+            ////TODO: check remaining spin count before continue, if 0 then need to handle in front end as well
+            return Json(new {prize = DateTime.Now.Millisecond % 4 * 5  % 15 + 1 }, JsonRequestBehavior.AllowGet);
         }
     }
 

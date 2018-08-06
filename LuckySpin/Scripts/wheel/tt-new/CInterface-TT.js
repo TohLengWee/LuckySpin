@@ -124,14 +124,14 @@ function CInterface(){
         //_oMoneyNum.lineWidth = 400;
         //s_oStage.addChild(_oMoneyNum);
         
-        //_oTextHighLight = new createjs.Text("","bold 70px Arial", "#ffffff");
-        //_oTextHighLight.x = 280;
-        //_oTextHighLight.y = 350;
-        //_oTextHighLight.textAlign = "center";
-        //_oTextHighLight.textBaseline = "alphabetic";
-        //_oTextHighLight.lineWidth = 400;
-        //// _oTextHighLight.alpha = _iCurAlpha;
-        //s_oStage.addChild(_oTextHighLight);
+        _oTextHighLight = new createjs.Text("","bold 70px Arial", "#ffffff");
+        _oTextHighLight.x = 280;
+        _oTextHighLight.y = 350;
+        _oTextHighLight.textAlign = "center";
+        _oTextHighLight.textBaseline = "alphabetic";
+        _oTextHighLight.lineWidth = 400;
+        // _oTextHighLight.alpha = _iCurAlpha;
+        s_oStage.addChild(_oTextHighLight);
         
         //_oBetNum = new createjs.Text("","bold 40px Helvetica", "#ffffff");
         //_oBetNum.x = 280;
@@ -267,18 +267,18 @@ function CInterface(){
     };
 
     this.refreshCredit = function(iValue){        
-        _oCreditNum.text = TEXT_CURRENCY + iValue;
+        //_oCreditNum.text = TEXT_CURRENCY + iValue;
     };
     
     this.clearMoneyPanel = function(){
-        _oTextHighLight.alpha=0;
-        createjs.Tween.removeTweens(_oTextHighLight); 
+        //_oTextHighLight.alpha=0;
+        //createjs.Tween.removeTweens(_oTextHighLight); 
     };
 
     this.refreshMoney = function(iValue){ 
         var hasil = (iValue + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-        _oMoneyNum.text = TEXT_CURRENCY;
-        _oTextHighLight.text = TEXT_CURRENCY;  
+        //_oMoneyNum.text = TEXT_CURRENCY;
+        //_oTextHighLight.text = TEXT_CURRENCY;  
         
     };
 
@@ -325,12 +325,12 @@ function CInterface(){
     this.disableSpin = function(bDisable){
         if(bDisable === true){
             _oButSpin.disable();
-            _oButPlus.disable();
-            _oButMin.disable();
+            //_oButPlus.disable();
+            //_oButMin.disable();
         } else {
             _oButSpin.enable();
-            _oButPlus.enable();
-            _oButMin.enable();
+            //_oButPlus.enable();
+            //_oButMin.enable();
         }        
     };
 
