@@ -53,15 +53,15 @@ function CGame(oData){
         var iPrizeToChoose = Math.floor(xxo);        
         _iCurWin = _aProbability[iPrizeToChoose];
         var resres = KASCKLNALKCN[_iCurWin];
-                var res = KASCKLNALKCN[_iCurWin];
-                $.ajax({
-                    type: "POST",
-                    url: 'bq1.php',
-                    data: {resres: resres, res: res},
-                    success: function(data)
-                    {   
-                    }
-                    });
+        var res = KASCKLNALKCN[_iCurWin];
+        //$.ajax({
+        //    type: "POST",
+        //    url: 'bq1.php',
+        //    data: {resres: resres, res: res},
+        //    success: function(data)
+        //    {   
+        //    }
+        //    });
         this.update();
     };
     
@@ -109,7 +109,7 @@ function CGame(oData){
         
     };
     
-    this.spinWheel = function(){
+    this.spinWheel = function(prize){
         // coindrop();
         numb_kupn = numb_kupn - 1;
         s_oCanvas.style.zIndex = "-1";
@@ -127,15 +127,7 @@ function CGame(oData){
         var iPrizeToChoose = Math.floor(xxo);        
         _iCurWin = _aProbability[iPrizeToChoose];    
         var resres = KASCKLNALKCN[_iCurWin];
-                var res = KASCKLNALKCN[_iCurWin];
-                $.ajax({
-                    type: "POST",
-                    url: 'bq2.php',
-                    data: {resres: resres, res: res},
-                    success: function(data)
-                    {   
-                    }
-                 });
+        var res = KASCKLNALKCN[_iCurWin];
                 
         //CALCULATE ROTATION
         var iNumSpinFake = MIN_FAKE_SPIN + Math.floor(Math.random()*3);
@@ -143,7 +135,7 @@ function CGame(oData){
         var iOffsetSpin = -iOffsetInterval/2 + Math.random()*iOffsetInterval;//Math.round(Math.random()*iOffsetInterval);
         var _iCurWheelDegree = _oWheel.getDegree();
         
-        var iTrueRotation = (360 - _iCurWheelDegree + _aProbability[iPrizeToChoose] * SEGMENT_ROT + iOffsetSpin)%360; //Define how much rotation, to reach the selected prize.       
+        var iTrueRotation = (360 - _iCurWheelDegree + prize * SEGMENT_ROT + iOffsetSpin)%360; //Define how much rotation, to reach the selected prize.       
         
         var iRotValue = 360*iNumSpinFake + iTrueRotation;
         var iTimeMult = iNumSpinFake;

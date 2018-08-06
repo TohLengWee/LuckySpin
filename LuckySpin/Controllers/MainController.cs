@@ -24,6 +24,11 @@ namespace LuckySpin.Controllers
                 Voucher = currentVoucher
             });
         }
+
+        public JsonResult GetSpinResult()
+        {
+            return Json(new {prize = 0}, JsonRequestBehavior.AllowGet);
+        }
     }
 
     public class GamePlayViewModel
