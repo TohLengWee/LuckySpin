@@ -22,7 +22,7 @@ namespace LuckySpin.Repositories
         public List<Voucher> GetActiveVouchers(Customer customer)
         {
             return _db.Query<Voucher>(@"select * from voucher 
-                                       where customerId = @customerId and expiryon > GetDate()
+                                       where customerId = @customerId and expiryon > GetDate() and Status = 1
                                        order by createdon desc", new {customer.CustomerId}).ToList();
         }
 

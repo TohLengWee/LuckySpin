@@ -19,7 +19,15 @@ namespace LuckySpin.Controllers
                 currentVoucher = vouchers.OrderBy(x => x.ExpiryOn).First();
             }
 
-            return View("Index", currentVoucher);
+            return View("Index", new GamePlayViewModel()
+            {
+                Voucher = currentVoucher
+            });
         }
+    }
+
+    public class GamePlayViewModel
+    {
+        public Voucher Voucher { get; set; }
     }
 }
