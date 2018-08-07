@@ -105,8 +105,6 @@ function CGame(oData){
         _oInterface.refreshBet(_iCurBet);
         _oWheel.clearText(_iMultiply);
         _oWheel.setText(_iMultiply);
-        
-        
     };
     
     this.spinWheel = function(prize){
