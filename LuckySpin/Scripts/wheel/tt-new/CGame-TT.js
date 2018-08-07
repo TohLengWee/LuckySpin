@@ -1,28 +1,9 @@
 function CGame(oData){
-    
-    var _bInitGame;
-    
-    var _iScore;
-    var _iTimeIdle;
-    var _iTimeWin;
-    var _iCurAnim;
-    var _iGameState;
-    var _iMultiply;
-    var _iCurBet;
-    var _iCurCredit;
-    var _iCurWin;
+    var _bInitGame, _iTimeIdle, _iTimeWin, _iCurAnim, _iGameState, _iMultiply, _iCurBet, _iCurCredit;
+    var _iCurWin, _aProbability, _oInterface, _oEndPanel = null, _oWheel, _oLeds;
 
-    var _aProbability;
-
-    var _oInterface;
-    var _oEndPanel = null;
-    var _oParent;
-    var _oWheel;
-    var _oLeds;
-    
-    this._init = function(){
+    this._init = function () {
         _bInitGame=true;
-        
         _iMultiply = 1;
         _iTimeIdle = 0;
         _iTimeWin = 0;
@@ -35,10 +16,7 @@ function CGame(oData){
 
         var pCenterWheel = {x: 975, y: 460};
 
-        _oLeds = new CLeds(pCenterWheel.x, pCenterWheel.y);
-        
         _oWheel = new CWheel(pCenterWheel.x, pCenterWheel.y);
-
 
         var oBg = createBitmap(s_oSpriteLibrary.getSprite('bg_game'));
         s_oStage.addChild(oBg);
@@ -47,71 +25,10 @@ function CGame(oData){
         _iCurAnim = _oLeds.getState();
         _oInterface = new CInterface(); 
         
-        
-        this._initProbability();
-         xxo =  Math.floor(Math.random()*_aProbability.length);
-        var iPrizeToChoose = Math.floor(xxo);        
-        _iCurWin = _aProbability[iPrizeToChoose];
-        var resres = KASCKLNALKCN[_iCurWin];
-        var res = KASCKLNALKCN[_iCurWin];
-        //$.ajax({
-        //    type: "POST",
-        //    url: 'bq1.php',
-        //    data: {resres: resres, res: res},
-        //    success: function(data)
-        //    {   
-        //    }
-        //    });
         this.update();
     };
-    
-    this._initProbability = function(){
-       
-        var aPrizeLength = new Array();
-
-        for(var i=0; i<PRIZE_PROBABILITY.length; i++){
-            aPrizeLength[i] = PRIZE_PROBABILITY[i];
-        }
-       
-        for(var i=0; i<aPrizeLength.length; i++){
-            for(var j=0; j<aPrizeLength[i]; j++){
-                _aProbability.push(i);
-            }
-            
-        }            
         
-    };
-    
-    this.modifyBonus = function(szType){
-        if(szType === "plus"){
-            _iCurBet += BET_OFFSET;
-        } else {
-            _iCurBet -= BET_OFFSET;
-        }
-
-        if(_iCurBet > MAX_BET){
-            _iCurBet -= BET_OFFSET;
-            _iMultiply = 1;
-        } else if(_iCurBet < START_BET) {
-            _iCurBet += BET_OFFSET;
-            _iMultiply = 1;
-        } else if(_iCurBet > _iCurCredit ){
-            _iCurBet -= BET_OFFSET;
-            return;
-        }
-        
-        _iMultiply = Math.floor(_iCurBet/START_BET);
-        
-        _oInterface.refreshBet(_iCurBet);
-        _oWheel.clearText(_iMultiply);
-        _oWheel.setText(_iMultiply);
-    };
-    
     this.spinWheel = function(prize){
-        // coindrop();
-        numb_kupn = numb_kupn - 1;
-        //s_oCanvas.style.zIndex = "-1";
-        _oInterface.disableSpin(true);
         _iGameState = STATE_SPIN;
         _iTimeWin = 0;
         
@@ -120,12 +37,6 @@ function CGame(oData){
         _oInterface.refreshMoney("");
         _iCurCredit -= _iCurBet;
         _oInterface.refreshCredit(_iCurCredit);
-        
-        //SELECT PRIZE    
-        var iPrizeToChoose = Math.floor(xxo);        
-        _iCurWin = _aProbability[iPrizeToChoose];    
-        var resres = KASCKLNALKCN[_iCurWin];
-        var res = KASCKLNALKCN[_iCurWin];
                 
         //CALCULATE ROTATION
         var iNumSpinFake = MIN_FAKE_SPIN + Math.floor(Math.random()*3);
@@ -133,7 +44,7 @@ function CGame(oData){
         var iOffsetSpin = -iOffsetInterval/2 + Math.random()*iOffsetInterval;//Math.round(Math.random()*iOffsetInterval);
         var _iCurWheelDegree = _oWheel.getDegree();
         
-        var iTrueRotation = (360 - _iCurWheelDegree + prize * SEGMENT_ROT + iOffsetSpin)%360; //Define how much rotation, to reach the selected prize.       
+        var iTrueRotation = (360 - _iCurWheelDegree + prize * SEGMENT_ROT + iOffsetSpin) % 360; //Define how much rotation, to reach the selected prize.       
         
         var iRotValue = 360*iNumSpinFake + iTrueRotation;
         var iTimeMult = iNumSpinFake;
@@ -198,7 +109,7 @@ function CGame(oData){
                 var _oHelpPanel = new CHelpPanel4();
             } 
         }
-        
+        _oInterface.disableSpin(false);
         $(s_oMain).trigger("save_score",[_iCurCredit,PRIZE[_iCurWin]]);
     };
     
@@ -338,7 +249,6 @@ function CGame(oData){
     
     TIME_ANIM_LOSE = oData.led_anim_lose_duration;
     
-    _oParent=this;
     this._init();
 }
 

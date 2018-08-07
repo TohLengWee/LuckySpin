@@ -47,18 +47,6 @@ function CInterface(){
         _oButSpin.addEventListener(ON_MOUSE_UP, this._onButSpinRelease, this);
 
         var oSprite = s_oSpriteLibrary.getSprite('but_plus');
-        _oButPlus = new CTextButton(650,CANVAS_HEIGHT - 320,oSprite,TEXT_PLUS,"Arial","#ffffff",70, false, s_oStage);
-        _oButPlus.enable();
-        _oButPlus.unload();
-        _oButPlus.addEventListener(ON_MOUSE_UP, this._onButPlusRelease, this);
-
-        var oSprite = s_oSpriteLibrary.getSprite('but_plus');
-        _oButMin = new CTextButton(350,CANVAS_HEIGHT - 320,oSprite,TEXT_MIN,"Arial","#ffffff",70, false, s_oStage);
-        _oButMin.enable();
-        _oButMin.unload();
-        _oButMin.addEventListener(ON_MOUSE_UP, this._onButMinRelease, this);
-
-        var oSprite = s_oSpriteLibrary.getSprite('but_plus');
         _oButHelp = new CTextButton(CANVAS_WIDTH-150,CANVAS_HEIGHT - 340,oSprite," ","Arial","#ffffff",70, false, s_oStage);
         _oButHelp.enable();
         // _oButMin.unload();
@@ -289,21 +277,22 @@ function CInterface(){
     this.animWin = function(){
         if(_iCurAlpha === 1){
             _iCurAlpha = 0;
-            createjs.Tween.get(_oTextHighLight).to({alpha:_iCurAlpha }, 150,createjs.Ease.cubicOut).call(function(){_oParent.animWin();});
+            createjs.Tween.get(_oTextHighLight).to({alpha:_iCurAlpha }, 150, createjs.Ease.cubicOut).call(function(){_oParent.animWin();});
         }else{
             _iCurAlpha = 1;
-            createjs.Tween.get(_oTextHighLight).to({alpha:_iCurAlpha }, 150,createjs.Ease.cubicOut).call(function(){_oParent.animWin();});
+            createjs.Tween.get(_oTextHighLight).to({alpha:_iCurAlpha }, 150, createjs.Ease.cubicOut).call(function(){_oParent.animWin();});
         } 
     };
 
-    this._onButSpinRelease = function(){
+  this._onButSpinRelease = function () {
         numb_kupn = numb_kupn - 1;
         if(numb_kupn < 10){
             numb_kupn = "0" + numb_kupn;
-        }
+        } 
         numb_kupnx = numb_kupn.toString().split("");
         _oTextHighLightx.text = numb_kupnx[0];
         _oTextHighLighty.text = numb_kupnx[1];
+        this.disableSpin(true);
         $.ajax({
           type: "GET",
           url: "/main/GetSpinResult",
@@ -312,25 +301,9 @@ function CInterface(){
           }
         });
     };
-    
-    this._onButPlusRelease = function(){
-        s_oGame.modifyBonus("plus");
-    };
 
-    this._onButMinRelease = function(){
-        s_oGame.modifyBonus("min");
-    };
-
-    this.disableSpin = function(bDisable){
-        if(bDisable === true){
-            _oButSpin.disable();
-            //_oButPlus.disable();
-            //_oButMin.disable();
-        } else {
-            _oButSpin.enable();
-            //_oButPlus.enable();
-            //_oButMin.enable();
-        }        
+    this.disableSpin = function (bDisable) {
+      bDisable || numb_kupn <=0 ? _oButSpin.disable() : _oButSpin.enable();
     };
 
     this._onButHelpRelease = function(){
