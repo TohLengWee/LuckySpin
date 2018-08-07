@@ -277,10 +277,10 @@ function CInterface(){
     this.animWin = function(){
         if(_iCurAlpha === 1){
             _iCurAlpha = 0;
-            createjs.Tween.get(_oTextHighLight).to({alpha:_iCurAlpha }, 150,createjs.Ease.cubicOut).call(function(){_oParent.animWin();});
+            createjs.Tween.get(_oTextHighLight).to({alpha:_iCurAlpha }, 150, createjs.Ease.cubicOut).call(function(){_oParent.animWin();});
         }else{
             _iCurAlpha = 1;
-            createjs.Tween.get(_oTextHighLight).to({alpha:_iCurAlpha }, 150,createjs.Ease.cubicOut).call(function(){_oParent.animWin();});
+            createjs.Tween.get(_oTextHighLight).to({alpha:_iCurAlpha }, 150, createjs.Ease.cubicOut).call(function(){_oParent.animWin();});
         } 
     };
 
@@ -303,7 +303,7 @@ function CInterface(){
     };
 
     this.disableSpin = function (bDisable) {
-      bDisable ? _oButSpin.disable() : _oButSpin.enable();
+      bDisable || numb_kupn <=0 ? _oButSpin.disable() : _oButSpin.enable();
     };
 
     this._onButHelpRelease = function(){

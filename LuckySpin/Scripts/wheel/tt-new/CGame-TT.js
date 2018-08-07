@@ -29,9 +29,6 @@ function CGame(oData){
     };
         
     this.spinWheel = function(prize){
-        //numb_kupn = numb_kupn - 1;
-        //s_oCanvas.style.zIndex = "-1";
-        //_oInterface.disableSpin(true);
         _iGameState = STATE_SPIN;
         _iTimeWin = 0;
         
@@ -47,7 +44,7 @@ function CGame(oData){
         var iOffsetSpin = -iOffsetInterval/2 + Math.random()*iOffsetInterval;//Math.round(Math.random()*iOffsetInterval);
         var _iCurWheelDegree = _oWheel.getDegree();
         
-        var iTrueRotation = (360 - _iCurWheelDegree + prize * SEGMENT_ROT + iOffsetSpin)%360; //Define how much rotation, to reach the selected prize.       
+        var iTrueRotation = (360 - _iCurWheelDegree + prize * SEGMENT_ROT + iOffsetSpin) % 360; //Define how much rotation, to reach the selected prize.       
         
         var iRotValue = 360*iNumSpinFake + iTrueRotation;
         var iTimeMult = iNumSpinFake;
