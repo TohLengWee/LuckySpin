@@ -110,7 +110,7 @@ function CGame(oData){
     this.spinWheel = function(prize){
         // coindrop();
         numb_kupn = numb_kupn - 1;
-        s_oCanvas.style.zIndex = "-1";
+        //s_oCanvas.style.zIndex = "-1";
         _oInterface.disableSpin(true);
         _iGameState = STATE_SPIN;
         _iTimeWin = 0;
