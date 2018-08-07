@@ -3,12 +3,15 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
 using LuckySpin.Entities;
+using LuckySpin.Filters;
 using LuckySpin.Models.Game;
 using LuckySpin.Models.ViewModels;
 using LuckySpin.Repositories;
 
 namespace LuckySpin.Controllers
 {
+    [LoginFilter]
+    [AdminAuthorisedFilter]
     public class AdminController : Controller
     {
         private readonly ICustomerRepository _customerRepository = new CustomerRepository();
@@ -16,12 +19,13 @@ namespace LuckySpin.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            List<Customer> adminList = _customerRepository.GetAllCustomers().Where(x => x.IsAdminRole()).ToList();
+            return View("MembersList", adminList);
         }
 
         public ActionResult MembersList()
         {
-            List<Customer> customers = _customerRepository.GetAllCustomers().ToList();
+            List<Customer> customers = _customerRepository.GetAllCustomers().Where(x=>!x.IsAdminRole()).ToList();
             return View(customers);
         }
 

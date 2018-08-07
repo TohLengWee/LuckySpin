@@ -2,11 +2,13 @@
 using System.Linq;
 using System.Web.Mvc;
 using LuckySpin.Entities;
+using LuckySpin.Filters;
 using LuckySpin.Models.Game;
 using LuckySpin.Repositories;
 
 namespace LuckySpin.Controllers
 {
+    [LoginFilter]
     public class MainController : Controller
     {
         public IGameRepository GameRepository = new GameRepository();
@@ -14,7 +16,7 @@ namespace LuckySpin.Controllers
         public ActionResult Index()
         {
             var vouchers = GameRepository.GetActiveVouchers(UserSessionContext.CurrentUser.Customer);
-            Voucher currentVoucher = new Voucher(){ SpinCount = 0};
+            Voucher currentVoucher = new Voucher();
             if (vouchers != null && vouchers.Count > 0)
             {
                 currentVoucher = vouchers.OrderBy(x => x.ExpiryOn).First();

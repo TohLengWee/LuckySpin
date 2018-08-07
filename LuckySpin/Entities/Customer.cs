@@ -14,6 +14,7 @@ namespace LuckySpin.Entities
         public Bank Bank { get; set; }
         public string PhoneNumber { get; set; }
         public CustomerStatus Status { get; set; }
+        public CustomerRole Role { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
 
@@ -39,6 +40,11 @@ namespace LuckySpin.Entities
         public bool IsSuspended()
         {
             return Status.HasFlag(CustomerStatus.Suspended);
+        }
+
+        public bool IsAdminRole()
+        {
+            return Role == CustomerRole.Admin;
         }
     }
 }

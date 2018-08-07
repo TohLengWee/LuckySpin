@@ -31,14 +31,14 @@ namespace LuckySpin.Repositories
 
         public Customer GetCustomerByUsername(string username)
         {
-            var sql = "SELECT [CustomerID],[Username],[Password], [BillNumber], [Bank], [PhoneNumber], [Status], [CreatedOn], [ModifiedOn] FROM [Customer] WHERE username = @username";
+            var sql = "SELECT [CustomerID],[Username],[Password], [BillNumber], [Bank], [PhoneNumber], [Status], [Role], [CreatedOn], [ModifiedOn] FROM [Customer] WHERE username = @username";
             return _db.Query<Customer>(sql, new {username}).SingleOrDefault();
         }
 
         public IEnumerable<Customer> GetAllCustomers()
         {
             var sql =
-                "SELECT [CustomerID],[Username],[Password], [BillNumber], [Bank], [PhoneNumber], [Status], [CreatedOn], [ModifiedOn]  FROM [Customer]";
+                "SELECT [CustomerID],[Username],[Password], [BillNumber], [Bank], [PhoneNumber], [Status], [Role], [CreatedOn], [ModifiedOn]  FROM [Customer]";
             return _db.Query<Customer>(sql);
         }
 

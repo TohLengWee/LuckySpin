@@ -158,6 +158,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainController.cs" />
@@ -167,7 +168,9 @@
     <Compile Include="Entities\Session.cs" />
     <Compile Include="Entities\UserSession.cs" />
     <Compile Include="Enums\Bank.cs" />
+    <Compile Include="Enums\CustomerRole.cs" />
     <Compile Include="Enums\CustomerStatus.cs" />
+    <Compile Include="Filters\AdminAuthorisedFilter.cs" />
     <Compile Include="Filters\LoginFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -281,6 +284,7 @@
     <Content Include="Views\Admin\MembersList.cshtml" />
     <Content Include="Views\Admin\MemberDetail.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
