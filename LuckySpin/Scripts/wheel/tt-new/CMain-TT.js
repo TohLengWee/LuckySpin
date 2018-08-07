@@ -16,7 +16,7 @@ function CMain(oData){
         s_oStage = new createjs.Stage(s_oCanvas);
         createjs.Touch.enable(s_oStage);
 		
-	s_bMobile = jQuery.browser.mobile;
+	      s_bMobile = jQuery.browser.mobile;
         if(s_bMobile === false){
             s_oStage.enableMouseOver(20);  
             $('body').on('contextmenu', '#canvas', function(e){ return false; });
