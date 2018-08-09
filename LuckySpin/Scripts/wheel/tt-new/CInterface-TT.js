@@ -297,7 +297,13 @@ function CInterface(){
           type: "GET",
           url: "/main/GetSpinResult",
           success: function (data) {
-            s_oGame.spinWheel(data.prize);
+            if (data.status && data.status === "success")
+              s_oGame.spinWheel(data.prize);
+            else
+              window.location = '/';
+          },
+          error: function(data) {
+            window.location = '/';
           }
         });
     };

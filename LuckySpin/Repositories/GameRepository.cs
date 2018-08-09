@@ -13,17 +13,31 @@ namespace LuckySpin.Repositories
     {
         List<Voucher> GetActiveVouchers(Customer customer);
         void AddVoucher(Voucher voucher);
+        List<Voucher> GetAllVouchersFromCustomer(Customer customer);
+        Voucher GetVoucherById(int id, Customer customer);
     }
 
     public class GameRepository: IGameRepository
     {
         private readonly IDbConnection _db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
+        public List<Voucher> GetAllVouchersFromCustomer(Customer customer)
+        {
+            return _db.Query<Voucher>(@"select * from voucher 
+                                       where customerId = @customerId
+                                       order by status, createdon desc", new { customer.CustomerId }).ToList();
+        }
+
         public List<Voucher> GetActiveVouchers(Customer customer)
         {
             return _db.Query<Voucher>(@"select * from voucher 
                                        where customerId = @customerId and expiryon > GetDate() and Status = 1
                                        order by createdon desc", new {customer.CustomerId}).ToList();
+        }
+
+        public Voucher GetVoucherById(int id, Customer customer)
+        {
+            return _db.QueryFirst<Voucher>(@"select * from voucher where id = @id and customerId = @customerId", new {id, customer.CustomerId});
         }
 
         public void AddVoucher(Voucher voucher)

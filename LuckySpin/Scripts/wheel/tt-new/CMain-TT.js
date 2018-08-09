@@ -91,35 +91,35 @@ function CMain(oData){
     this._loadImages = function(){
         s_oSpriteLibrary.init( this._onImagesLoaded,this._onAllImagesLoaded, this );
 
-        s_oSpriteLibrary.addSprite("but_play","./sprites/but_play.png");
-        s_oSpriteLibrary.addSprite("msg_box","./sprites/msg_box.png");
+        s_oSpriteLibrary.addSprite("but_play","/sprites/but_play.png");
+        s_oSpriteLibrary.addSprite("msg_box","/sprites/msg_box.png");
         
-        s_oSpriteLibrary.addSprite("bg_menu","./sprites/bg_menu.jpg"); 
-        s_oSpriteLibrary.addSprite("bg_game","./sprites/toto/bg_game-tt.png");
+        s_oSpriteLibrary.addSprite("bg_menu","/sprites/bg_menu.jpg"); 
+        s_oSpriteLibrary.addSprite("bg_game","/sprites/toto/bg_game-tt.png");
 
 
-        s_oSpriteLibrary.addSprite("bg_help1","./sprites/toto/bg_turnover_tt.png");
-        s_oSpriteLibrary.addSprite("bg_help2","./sprites/toto/bg_history_tt.png");
-        s_oSpriteLibrary.addSprite("bg_help3","./sprites/toto/bg_point_tt.png");
-        s_oSpriteLibrary.addSprite("bg_help4","./sprites/toto/bg_win_tt.png");
-        s_oSpriteLibrary.addSprite("bg_help5","./sprites/toto/bg_lose_tt.png");
-        s_oSpriteLibrary.addSprite("bg_help6","./sprites/overlay_info.png");
+        s_oSpriteLibrary.addSprite("bg_help1","/sprites/toto/bg_turnover_tt.png");
+        s_oSpriteLibrary.addSprite("bg_help2","/sprites/toto/bg_history_tt.png");
+        s_oSpriteLibrary.addSprite("bg_help3","/sprites/toto/bg_point_tt.png");
+        s_oSpriteLibrary.addSprite("bg_help4","/sprites/toto/bg_win_tt.png");
+        s_oSpriteLibrary.addSprite("bg_help5","/sprites/toto/bg_lose_tt.png");
+        s_oSpriteLibrary.addSprite("bg_help6","/sprites/overlay_info.png");
 
 
 
-        s_oSpriteLibrary.addSprite("bg_history","./sprites/toto/history-TT.png");
-        s_oSpriteLibrary.addSprite("bg_info","./sprites/toto/info-tt.png");
+        s_oSpriteLibrary.addSprite("bg_history","/sprites/toto/history-TT.png");
+        s_oSpriteLibrary.addSprite("bg_info","/sprites/toto/info-tt.png");
         
-        s_oSpriteLibrary.addSprite("but_exit","./sprites/but_back.png");
-        s_oSpriteLibrary.addSprite("audio_icon","./sprites/audio_icon.png");
-        s_oSpriteLibrary.addSprite("but_spin","./sprites/toto/but_spin-TT.png");
-        s_oSpriteLibrary.addSprite("but_plus","./sprites/toto/but_plus-TT.png"); 
-        s_oSpriteLibrary.addSprite("but_toa","./sprites/toto/toa_toto.png");     
+        s_oSpriteLibrary.addSprite("but_exit","/sprites/but_back.png");
+        s_oSpriteLibrary.addSprite("audio_icon","/sprites/audio_icon.png");
+        s_oSpriteLibrary.addSprite("but_spin","/sprites/toto/but_spin-TT.png");
+        s_oSpriteLibrary.addSprite("but_plus","/sprites/toto/but_plus-TT.png"); 
+        s_oSpriteLibrary.addSprite("but_toa","/sprites/toto/toa_toto.png");     
         
-        s_oSpriteLibrary.addSprite("wheel","./sprites/toto/wheel-tt.png");
-        s_oSpriteLibrary.addSprite("leds","./sprites/toto/leds3.png");
+        s_oSpriteLibrary.addSprite("wheel","/sprites/toto/wheel-tt.png");
+        s_oSpriteLibrary.addSprite("leds","/sprites/toto/leds3.png");
         
-        s_oSpriteLibrary.addSprite("multiply","./sprites/dix2.png");
+        s_oSpriteLibrary.addSprite("multiply","/sprites/dix2.png");
 
         RESOURCE_TO_LOAD += s_oSpriteLibrary.getNumSprites();
         s_oSpriteLibrary.loadSprites();
