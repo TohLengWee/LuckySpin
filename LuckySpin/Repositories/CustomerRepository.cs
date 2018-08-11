@@ -24,8 +24,8 @@ namespace LuckySpin.Repositories
 
         public bool CreateCustomer(Customer customer)
         {
-            var sql = "Insert Into Customer (Username, Password, 1, BillNumber, Bank, PhoneNumber, Status, CreatedOn, ModifiedOn)" +
-                      "Values (@Username, @Password, @BillNumber, @Bank, @PhoneNumber, 0, GETDATE(), GETDATE());";
+            var sql = "Insert Into Customer (Username, Password, Role, BillNumber, Bank, PhoneNumber, Status, CreatedOn, ModifiedOn)" +
+                      "Values (@Username, @Password, 1, @BillNumber, @Bank, @PhoneNumber, 0, GETDATE(), GETDATE());";
             return _db.Execute(sql, customer) == 1;
         }
 
