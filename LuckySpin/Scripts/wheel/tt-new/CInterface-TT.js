@@ -295,15 +295,15 @@ function CInterface(){
         this.disableSpin(true);
         $.ajax({
           type: "GET",
-          url: "/main/GetSpinResult",
+          url: "/main/GetSpinResult?voucherId="+voucherId,
           success: function (data) {
             if (data.status && data.status === "success")
               s_oGame.spinWheel(data.prize);
             else
-              window.location = '/';
+              window.location = '/main';
           },
           error: function(data) {
-            window.location = '/';
+            window.location = '/main';
           }
         });
     };

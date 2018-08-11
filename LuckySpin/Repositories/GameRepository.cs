@@ -15,6 +15,7 @@ namespace LuckySpin.Repositories
         void AddVoucher(Voucher voucher);
         List<Voucher> GetAllVouchersFromCustomer(Customer customer);
         Voucher GetVoucherById(int id, Customer customer);
+        void ReduceSpinCountByVoucherId(int voucherId, Customer currentUserCustomer);
     }
 
     public class GameRepository: IGameRepository
@@ -38,6 +39,13 @@ namespace LuckySpin.Repositories
         public Voucher GetVoucherById(int id, Customer customer)
         {
             return _db.QueryFirst<Voucher>(@"select * from voucher where id = @id and customerId = @customerId", new {id, customer.CustomerId});
+        }
+
+        public void ReduceSpinCountByVoucherId(int voucherId, Customer currentUserCustomer)
+        {
+            _db.Execute(
+                @"update voucher set spincount = spincount -1 where id = @voucherId and customerId = @customerId",
+                new {voucherId, currentUserCustomer.CustomerId});
         }
 
         public void AddVoucher(Voucher voucher)

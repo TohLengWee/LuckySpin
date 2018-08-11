@@ -27,7 +27,10 @@
                         <h5 class="card-title">Voucher Reference NO. 1234</h5>
                         <p class="card-text"><b>Remaining Spin:</b> @voucher.SpinCount</p>
                         <p class="card-text"><b>Valid Until:</b> @voucher.ExpiryOn</p>
-                        <a href="/main/game?voucherId=@voucher.Id" class="btn btn-primary">Go Spin</a>
+                        @if (voucher.SpinCount > 0)
+                        {
+                            <a href="/main/game?voucherId=@voucher.Id" class="btn btn-primary">Go Spin</a>
+                        }
                     </div>
                 </div>
             </div>

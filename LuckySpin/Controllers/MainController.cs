@@ -37,16 +37,27 @@ namespace LuckySpin.Controllers
             });
         }
 
-        public JsonResult GetSpinResult()
+        public JsonResult GetSpinResult(int voucherId)
         {
-            var vouchers = GameRepository.GetActiveVouchers(UserSessionContext.CurrentUser.Customer);
-            Voucher currentVoucher = new Voucher();
-            if (vouchers != null && vouchers.Count > 0)
+            var voucher = GameRepository.GetVoucherById(voucherId, UserSessionContext.CurrentUser.Customer);
+
+            if (voucher is null)
             {
-                currentVoucher = vouchers.OrderBy(x => x.ExpiryOn).First();
+                TempData["Error"] = "Voucher is not valid.";
+                return Json(new {status = "error", msg= "Voucher is not valid." });
             }
 
-            return Json(new {prize = DateTime.Now.Millisecond % 4 * 5  % 15 + 1, status="success" }, JsonRequestBehavior.AllowGet);
+            if (voucher.SpinCount <= 0)
+            {
+                TempData["Error"] = "There is no spin remaining in the voucher.";
+                return Json(new {status = "error", msg= "There is no spin remaining in the voucher." });
+            }
+            
+            GameRepository.ReduceSpinCountByVoucherId(voucherId, UserSessionContext.CurrentUser.Customer);
+
+            voucher = GameRepository.GetVoucherById(voucherId, UserSessionContext.CurrentUser.Customer);
+
+            return Json(new {prize = DateTime.Now.Millisecond % 4 * 5, status="success", remainingCount = voucher.SpinCount }, JsonRequestBehavior.AllowGet);
         }
     }
 
