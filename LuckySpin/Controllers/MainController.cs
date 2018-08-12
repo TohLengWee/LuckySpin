@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using LuckySpin.Entities;
@@ -16,6 +17,10 @@ namespace LuckySpin.Controllers
         public ActionResult Index()
         {
             var vouchers = GameRepository.GetActiveVouchers(UserSessionContext.CurrentUser.Customer);
+            if (vouchers is null)
+            {
+                vouchers = new List<Voucher>();
+            }
 
             return View("Index", vouchers);
         }

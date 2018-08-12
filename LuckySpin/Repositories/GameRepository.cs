@@ -50,7 +50,7 @@ namespace LuckySpin.Repositories
 
         public void AddVoucher(Voucher voucher)
         {
-            _db.Query<Voucher>(@"insert into Voucher values (@customerId, @spinCount, @maxWinning, @spinBoard, @ExpiryOn, @Status, GetDate(), GetDate())", voucher);
+            _db.Query<Voucher>(@"insert into Voucher values (@customerId, @spinCount, @maxWinning, @spinBoard, @ExpiryOn, 1, GetDate(), GetDate())", voucher);
         }
     }
 }
