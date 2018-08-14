@@ -10,7 +10,7 @@ using LuckySpin.Repositories;
 namespace LuckySpin.Controllers
 {
     [LoginFilter]
-    public class MainController : Controller
+    public class MainController : BaseController
     {
         public IGameRepository GameRepository = new GameRepository();
 

@@ -6,7 +6,7 @@ using LuckySpin.Repositories;
 
 namespace LuckySpin.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
         public ICustomerRepository CustomerRepository = new CustomerRepository();
 

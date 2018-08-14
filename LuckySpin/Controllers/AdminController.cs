@@ -12,7 +12,7 @@ namespace LuckySpin.Controllers
 {
     [LoginFilter]
     [AdminAuthorisedFilter]
-    public class AdminController : Controller
+    public class AdminController : BaseController
     {
         private readonly ICustomerRepository _customerRepository = new CustomerRepository();
         private readonly IGameRepository _gameRepository = new GameRepository();

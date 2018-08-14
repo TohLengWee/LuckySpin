@@ -5,7 +5,7 @@ using LuckySpin.Repositories;
 
 namespace LuckySpin.Controllers
 {
-    public class RegisterController : Controller
+    public class RegisterController : BaseController
     {
         private readonly ICustomerRepository _customerRepository = new CustomerRepository();
 

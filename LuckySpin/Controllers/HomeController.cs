@@ -1,9 +1,8 @@
 ﻿using System.Web.Mvc;
-using LuckySpin.Filters;
 
 namespace LuckySpin.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
