@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using LuckySpin.Filters;
 
 namespace LuckySpin
 {
@@ -7,6 +8,7 @@ namespace LuckySpin
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new GeneralExceptionFilter());
         }
     }
 }

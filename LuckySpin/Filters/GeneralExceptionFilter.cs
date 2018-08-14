@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using LuckySpin.Services;
 
 namespace LuckySpin.Filters
@@ -10,7 +9,7 @@ namespace LuckySpin.Filters
 
         public override void OnException(ExceptionContext filterContext)
         {
-            Logger.Error(string.Format("Exception occurred : {0}", filterContext.Exception));
+            Logger.Error($"Exception occurred : {filterContext.Exception}");
             filterContext.ExceptionHandled = true;
             filterContext.Result = new RedirectResult("/Error");
             base.OnException(filterContext);
