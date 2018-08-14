@@ -16,6 +16,7 @@ namespace LuckySpin.Repositories
         IEnumerable<Customer> GetAllCustomers();
         bool ToggleSuspend(int customerId);
         bool ActivateCustomer(int customerId);
+        Customer GetCustomerByCustomerId(int customerId);
     }
 
     public class CustomerRepository : ICustomerRepository
@@ -33,6 +34,12 @@ namespace LuckySpin.Repositories
         {
             var sql = "SELECT [CustomerID],[Username],[Password], [BillNumber], [Bank], [PhoneNumber], [Status], [Role], [CreatedOn], [ModifiedOn] FROM [Customer] WHERE username = @username";
             return _db.Query<Customer>(sql, new {username}).SingleOrDefault();
+        }
+
+        public Customer GetCustomerByCustomerId(int customerId)
+        {
+            var sql = "SELECT [CustomerID],[Username],[Password], [BillNumber], [Bank], [PhoneNumber], [Status], [Role], [CreatedOn], [ModifiedOn] FROM [Customer] WHERE customerId = @customerId";
+            return _db.Query<Customer>(sql, new { customerId }).SingleOrDefault();
         }
 
         public IEnumerable<Customer> GetAllCustomers()

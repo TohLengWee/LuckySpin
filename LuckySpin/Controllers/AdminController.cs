@@ -45,8 +45,8 @@ namespace LuckySpin.Controllers
         public ActionResult AddVoucher(Voucher voucher)
         {
             _gameRepository.AddVoucher(voucher);
-
-            return RedirectToAction("MemberDetail", new RouteValueDictionary {{"username", "guoqiang"}});
+            var customer = _customerRepository.GetCustomerByCustomerId(voucher.CustomerId);
+            return RedirectToAction("MemberDetail", new RouteValueDictionary {{"username", customer.Username}});
         }
 
         [HttpPost]
