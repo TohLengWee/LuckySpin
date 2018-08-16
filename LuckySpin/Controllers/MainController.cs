@@ -59,10 +59,18 @@ namespace LuckySpin.Controllers
             }
             
             GameRepository.ReduceSpinCountByVoucherId(voucherId, UserSessionContext.CurrentUser.Customer);
-
+            var transaction = new Transaction
+            {
+                VoucherId = voucherId,
+                CustomerId = UserSessionContext.CurrentUser.Customer.CustomerId,
+                Prize = 0,
+                CreatedOn = DateTime.Now,
+                ModifiedOn = DateTime.Now
+            };
+            GameRepository.AddTransaction(transaction);
             voucher = GameRepository.GetVoucherById(voucherId, UserSessionContext.CurrentUser.Customer);
 
-            return Json(new {prize = DateTime.Now.Millisecond % 4 * 5, status="success", remainingCount = voucher.SpinCount }, JsonRequestBehavior.AllowGet);
+            return Json(new {prize = DateTime.Now.Millisecond % 4 * 5, status="success", result=0, remainingCount = voucher.SpinCount }, JsonRequestBehavior.AllowGet);
         }
     }
 
@@ -70,5 +78,15 @@ namespace LuckySpin.Controllers
     {
         public Voucher Voucher { get; set; }
         public Customer Customer { get; set; }
+    }
+
+    public class Transaction
+    {
+        public int Id { get; set; }
+        public int VoucherId { get; set; }
+        public int CustomerId { get; set; }
+        public int Prize { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime ModifiedOn { get; set; }
     }
 }

@@ -28,7 +28,7 @@ function CGame(oData){
         this.update();
     };
         
-    this.spinWheel = function(prize){
+    this.spinWheel = function(data){
         _iGameState = STATE_SPIN;
         _iTimeWin = 0;
         
@@ -44,13 +44,13 @@ function CGame(oData){
         var iOffsetSpin = -iOffsetInterval/2 + Math.random()*iOffsetInterval;//Math.round(Math.random()*iOffsetInterval);
         var _iCurWheelDegree = _oWheel.getDegree();
         
-        var iTrueRotation = (360 - _iCurWheelDegree + prize * SEGMENT_ROT + iOffsetSpin) % 360; //Define how much rotation, to reach the selected prize.       
+        var iTrueRotation = (360 - _iCurWheelDegree + data.prize * SEGMENT_ROT + iOffsetSpin) % 360; //Define how much rotation, to reach the selected prize.       
         
         var iRotValue = 360*iNumSpinFake + iTrueRotation;
         var iTimeMult = iNumSpinFake;
 
         //SPIN
-        _oWheel.spin(iRotValue, iTimeMult, prize);
+        _oWheel.spin(iRotValue, iTimeMult, data.prize);
     };                 
     
     this.setNewRound = function(){
@@ -64,34 +64,31 @@ function CGame(oData){
         _iCurWin = -1;
     };
     
-    this.releaseWheel = function(prize){
+    this.releaseWheel = function(data){
         _oInterface.disableSpin(true); 
-        _oInterface.refreshMoney(prize * _iMultiply);
+        _oInterface.refreshMoney(data.prize * _iMultiply);
         
-        _iCurCredit += prize * _iMultiply;
+        _iCurCredit += data.prize * _iMultiply;
         _oInterface.refreshCredit(_iCurCredit);
         
         _oInterface.animWin();
-        
-        //if(_iCurCredit < START_BET){
-        //    this.gameOver();
-        //}        
+              
         if(_iMultiply > _iCurCredit/START_BET ){
             _iMultiply = Math.floor(_iCurCredit/START_BET);
             _iCurBet = _iMultiply * START_BET;
             _oInterface.refreshBet(_iCurBet);            
         }
 
-        prxsgdgfff = prize;
+        prxsgdgfff = data.prize;
         
-      if (prize == null){
+      if (data.prize == null){
             _iGameState = STATE_LOSE;
             if (DISABLE_SOUND_MOBILE === false || s_bMobile === false) {
                 xosandjxhgdaasd = PRIZE_NAME[_iCurWin];
                 var _oHelpPanel = new CHelpPanel5();
             } 
         }
-      else if (prize <= 0){
+      else if (data.result === 0){
             _iGameState = STATE_LOSE;
             if(DISABLE_SOUND_MOBILE === false || s_bMobile === false){
                 xosandjxhgdaasd = PRIZE_NAME[_iCurWin];
@@ -105,7 +102,7 @@ function CGame(oData){
         } else {
             _iGameState = STATE_WIN;
             if(DISABLE_SOUND_MOBILE === false || s_bMobile === false){
-              xosandjxhgdaasd = "Rp." + (prize + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+              xosandjxhgdaasd = "Rp." + (data.prize + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
                 var _oHelpPanel = new CHelpPanel4();
             } 
         }
@@ -142,7 +139,10 @@ function CGame(oData){
     };
     
     this._onExitHelp = function () {
-         _bStartGame = true;
+      _bStartGame = true;
+      if (numb_kupn*1 === 0) {
+        window.location.href = "/Main";
+      }
     };
     
     this.gameOver = function(){  

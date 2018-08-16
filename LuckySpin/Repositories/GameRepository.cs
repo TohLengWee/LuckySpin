@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
+using LuckySpin.Controllers;
 using LuckySpin.Entities;
 using LuckySpin.Models.Game;
 
@@ -16,6 +17,7 @@ namespace LuckySpin.Repositories
         List<Voucher> GetAllVouchersFromCustomer(Customer customer);
         Voucher GetVoucherById(int id, Customer customer);
         void ReduceSpinCountByVoucherId(int voucherId, Customer currentUserCustomer);
+        void AddTransaction(Transaction transaction);
     }
 
     public class GameRepository: IGameRepository
@@ -32,7 +34,7 @@ namespace LuckySpin.Repositories
         public List<Voucher> GetActiveVouchers(Customer customer)
         {
             return _db.Query<Voucher>(@"select * from voucher 
-                                       where customerId = @customerId and expiryon > GetDate() and Status = 1
+                                       where customerId = @customerId and expiryon > GetDate() and Status = 1 and SpinCount > 0
                                        order by createdon desc", new {customer.CustomerId}).ToList();
         }
 
@@ -46,6 +48,12 @@ namespace LuckySpin.Repositories
             _db.Execute(
                 @"update voucher set spincount = spincount -1 where id = @voucherId and customerId = @customerId",
                 new {voucherId, currentUserCustomer.CustomerId});
+        }
+
+        public void AddTransaction(Transaction transaction)
+        {
+            _db.Execute(@"insert into [Transaction] values (@VoucherId, @CustomerId, @Prize, @CreatedOn, @ModifiedOn)",
+                transaction);
         }
 
         public void AddVoucher(Voucher voucher)
