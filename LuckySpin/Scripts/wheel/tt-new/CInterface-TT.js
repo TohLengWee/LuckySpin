@@ -46,6 +46,15 @@ function CInterface(){
         }
         _oButSpin.addEventListener(ON_MOUSE_UP, this._onButSpinRelease, this);
 
+        _oTextHighLight = new createjs.Text("", "bold 70px Arial", "#ffffff");
+        _oTextHighLight.x = 280;
+        _oTextHighLight.y = 350;
+        _oTextHighLight.textAlign = "center";
+        _oTextHighLight.textBaseline = "alphabetic";
+        _oTextHighLight.lineWidth = 400;
+        // _oTextHighLight.alpha = _iCurAlpha;
+        s_oStage.addChild(_oTextHighLight);
+
         if(numb_kupn < 10){
             numb_kupn = "0" + numb_kupn;
         }
