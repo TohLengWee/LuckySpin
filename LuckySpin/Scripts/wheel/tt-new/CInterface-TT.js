@@ -2,17 +2,12 @@ function CInterface(){
     var _oAudioToggle;
     var _oButExit;
     var _oButSpin;
-    var _oButPlus;
-    var _oButMin;
     var _oHelpPanel=null;    
     var _iCurAlpha;
-    var _oCreditNum;
-    var _oMoneyNum;
     var _oBetNum;
     var _oParent;
     var _oTextHighLight;
     
-    var _pStartPosExit;
     var _pStartPosAudio;
     
     this._init = function(){
@@ -22,10 +17,10 @@ function CInterface(){
         var oExitX;        
         
         var oSprite = s_oSpriteLibrary.getSprite('but_exit');
-        //_pStartPosExit = {x: CANVAS_WIDTH-60, y: 60};
-        //_oButExit = new CTextButton(_pStartPosExit.x - 220, _pStartPosExit.y,oSprite," HOME ","Arial","#ffffff",40, false, s_oStage);
-        //_oButExit.addEventListener(ON_MOUSE_UP, this._onExit, this);
-        //_oButExit.enable();
+        _pStartPosExit = {x: CANVAS_WIDTH-50, y: 150};
+        _oButExit = new CTextButton(_pStartPosExit.x - 220, _pStartPosExit.y,oSprite," HOME ","Arial","#ffffff",40, false, s_oStage);
+        _oButExit.addEventListener(ON_MOUSE_UP, this._onExit, this);
+        _oButExit.enable();
          //_oButExit.unload();
         
         oExitX = CANVAS_WIDTH - (oSprite.width/2) - 100;
@@ -39,7 +34,8 @@ function CInterface(){
         }      
 
         var oSprite = s_oSpriteLibrary.getSprite('but_spin');
-        _oButSpin = new CTextButton(975,CANVAS_HEIGHT - 140,oSprite," ","Helvetica","#fff",40, false, s_oStage);
+        //_oButSpin = new CTextButton(975,CANVAS_HEIGHT - 140,oSprite," ","Helvetica","#fff",40, false, s_oStage);
+        _oButSpin = new CTextButton(CANVAS_WIDTH - 250, CANVAS_HEIGHT/2 - 100,oSprite," ","Helvetica","#fff",40, false, s_oStage);
         _oButSpin.enable();
         if (numb_kupn < 1){
         _oButSpin.disable(); 
@@ -191,7 +187,7 @@ function CInterface(){
     };
     
     this._onExit = function(){
-      window.location = atob(rturl); 
+      window.location = "/Main"; 
     };
     
     s_oInterface = this;

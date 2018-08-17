@@ -95,7 +95,7 @@ function CMain(oData){
         s_oSpriteLibrary.addSprite("msg_box","/sprites/msg_box.png");
         
         s_oSpriteLibrary.addSprite("bg_menu","/sprites/bg_menu.jpg"); 
-        s_oSpriteLibrary.addSprite("bg_game","/sprites/toto/bg_game-tt.png");
+        s_oSpriteLibrary.addSprite("bg_game","/sprites/toto/bg_game-tt.png?123");
 
 
         s_oSpriteLibrary.addSprite("bg_help1","/sprites/toto/bg_turnover_tt.png");
