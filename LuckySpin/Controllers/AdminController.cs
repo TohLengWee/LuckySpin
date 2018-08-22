@@ -50,6 +50,13 @@ namespace LuckySpin.Controllers
         }
 
         [HttpPost]
+        public ActionResult UpdateVoucher(Voucher voucher)
+        {
+            _gameRepository.Update(voucher);
+            return Json(new { Success = true, Message = string.Empty });
+        }
+
+        [HttpPost]
         public ActionResult ToggleSuspend(int customerId)
         {
             var success = _customerRepository.ToggleSuspend(customerId);
