@@ -29,6 +29,7 @@
             <tbody>
                 @foreach (var item in Model)
                 {
+                    var isChecked = item.IsSuspended() ? "checked" : string.Empty; 
                     <tr>
                         <td style="cursor: pointer;"><a href="@Url.Action("MemberDetail", "Admin", new { username = item.Username })">@Html.DisplayFor(modelItem => item.Username)</a></td>
                         <td>@Html.DisplayFor(modelItem => item.BillNumber)</td>
@@ -46,19 +47,7 @@
                             }
                         </td>
                         <td>
-                            <input type="checkbox" id="toggle-suspend-@item.CustomerId" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="danger" data-offstyle="success" data-size="mini" onchange="toggleSuspend(@item.CustomerId)">
-                            @if (item.IsSuspended())
-                            {
-                                <script type="text/javascript">
-                                    $('#toggle-suspend-@item.CustomerId').prop("checked", true);
-                                </script>
-                            }
-                            else
-                            {
-                                <script type="text/javascript">
-                                    $('#toggle-suspend-@item.CustomerId').prop("checked", false);
-                                </script>
-                            } 
+                            <input type="checkbox" id="toggle-suspend-@item.CustomerId" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="danger" data-offstyle="success" data-size="mini" onchange="toggleSuspend(@item.CustomerId)" @isChecked>
                         </td>
                     </tr>
                 }

@@ -18,6 +18,7 @@ namespace LuckySpin.Repositories
         Voucher GetVoucherById(int id, Customer customer);
         void ReduceSpinCountByVoucherId(int voucherId, Customer currentUserCustomer);
         void AddTransaction(Transaction transaction);
+        void Update(Voucher voucher);
     }
 
     public class GameRepository: IGameRepository
@@ -54,6 +55,13 @@ namespace LuckySpin.Repositories
         {
             _db.Execute(@"insert into [Transaction] values (@VoucherId, @CustomerId, @Prize, @CreatedOn, @ModifiedOn)",
                 transaction);
+        }
+
+        public void Update(Voucher voucher)
+        {
+            _db.Execute(
+                @"update voucher set status = @status, expiryOn = @expiryOn where id = @voucherId",
+                new { voucherId = voucher.Id, status = voucher.Status, expiryOn = voucher.ExpiryOn.ToString("yyyy-MM-dd")});
         }
 
         public void AddVoucher(Voucher voucher)

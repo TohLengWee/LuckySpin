@@ -1,4 +1,5 @@
 ﻿using System;
+using LuckySpin.Enums;
 
 namespace LuckySpin.Models.Game
 {
@@ -8,7 +9,7 @@ namespace LuckySpin.Models.Game
         public int CustomerId { get; set; }
         public int SpinCount { get; set; }
         public int MaxWinning { get; set; }
-        public int SpinBoard { get; set; }
+        public SpinBoardType SpinBoard { get; set; }
         public DateTime ExpiryOn { get; set; }
         public int Status { get; set; }
         public DateTime CreatedOn { get; set; }
