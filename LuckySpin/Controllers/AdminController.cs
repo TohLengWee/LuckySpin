@@ -52,7 +52,7 @@ namespace LuckySpin.Controllers
         [HttpPost]
         public ActionResult UpdateVoucher(Voucher voucher)
         {
-            _gameRepository.Update(voucher);
+            _gameRepository.UpdateVoucher(voucher);
             return Json(new { Success = true, Message = string.Empty });
         }
 
