@@ -1,5 +1,4 @@
-﻿@using System.Collections.Specialized
-@model System.Collections.Generic.List<LuckySpin.Models.Transaction>
+﻿@model System.Collections.Generic.List<LuckySpin.Models.Transaction>
 
 @{
     ViewBag.Title = "Lucky Spin";
@@ -12,8 +11,7 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Voucher Id</th>
-                    <th>Transaction Id</th>
+                    <th>Voucher Id <br /> Transaction Id</th>
                     <th>Prize</th>
                     <th>Transaction Time</th>
                 </tr>
@@ -25,8 +23,7 @@
                     var index = item.index + 1;
                     <tr>
                         <td>@index</td>
-                        <td>@transaction.VoucherId</td>
-                        <td>@transaction.Id</td>
+                        <td>@transaction.VoucherId <br/> @transaction.Id</td>
                         <td>@transaction.Prize</td>
                         <td>@transaction.TransactionTime.ToString("dd-MM-yyyy HH:mm")</td>
                     </tr>

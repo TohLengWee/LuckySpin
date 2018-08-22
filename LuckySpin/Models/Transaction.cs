@@ -1,5 +1,4 @@
 ﻿using System;
-using LuckySpin.Controllers;
 using LuckySpin.Enums;
 
 namespace LuckySpin.Models
