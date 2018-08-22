@@ -140,54 +140,9 @@
         <canvas id="canvas" class="ani_hack" width="1920" height="1076" style="width: 1348.64px; height: 755.798px; top: 0px; left: -179.818px; z-index: 20;"> </canvas>
         <marquee style="z-index: 21;position: absolute;color: #fff;bottom: 6;">PERHATIAN!!! Facebook Dewafortune sudah kami tutup, Waspada Kepada Tindak Penipuan Yang Mengatas namakan Dewafortune. Dewafortune tidak pernah Meminta untuk Transfer sejumlah uang untuk Memberikan free Spin. Free Spin di Dapat dari Hasil Turnover Player bermain di dalam Game.</marquee>
     </div>
-    <div id="bgx00897_bn01"> </div>
-    @if (!Request.Browser.IsMobileDevice)
-    {
-        <script>
-            requestFullScreen();
-        </script>
-    }
-    else
-    {
-        <script>
-        (function(win){
-            var doc = win.document;
-
-            // If there's a hash, or addEventListener is undefined, stop here
-            if (!location.hash && win.addEventListener)
-            {
-
-                //scroll to 1
-                window.scrollTo(0, 1);
-                var scrollTop = 1,
-                    getScrollTop = function(){
-                    return win.pageYOffset || doc.compatMode === "CSS1Compat" && doc.documentElement.scrollTop || doc.body.scrollTop || 0;
-                },
-
-                //reset to 0 on bodyready, if needed
-                bodycheck = setInterval(function(){
-                    if (doc.body)
-                    {
-                        clearInterval(bodycheck);
-                        scrollTop = getScrollTop();
-                        win.scrollTo(0, scrollTop === 1 ? 0 : 1);
-                    }
-                }, 15 );
-
-                win.addEventListener("load", function(){
-                    setTimeout(function(){
-                        //at load, if user hasn't scrolled more than 20 or so...
-                        if (getScrollTop() < 20)
-                        {
-                            //reset to hide addr bar at onload
-                            win.scrollTo(0, scrollTop === 1 ? 0 : 1);
-                        }
-                    }, 0);
-                } );
-            }
-        })(this);
-        </script>
-    }
-
+    <div id="bgx00897_bn01" style="height:100px;"> </div>
+    <script>
+        requestFullScreen();
+    </script>
 </body>
 </html>
