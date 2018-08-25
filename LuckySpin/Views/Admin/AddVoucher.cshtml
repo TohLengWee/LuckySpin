@@ -1,48 +1,9 @@
-﻿@model LuckySpin.Models.ViewModels.MemberDetailViewModel
+﻿@model dynamic
 
 @{
-    ViewBag.Title = "Member Detail";
+    ViewBag.Title = "Add Voucher";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-<style>
-    th, td {
-        text-align: center;
-    }
-</style>
-
-<div class="container">
-    <h2>@Model.Customer.Username <i class="fas fa-plus-circle" title="Add Voucher" style="cursor: pointer;" data-toggle="modal" data-target="#addVoucher"></i></h2>
-    <table class="table table-bordered" id="vouchers">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Count</th>
-                <th>Max Winning</th>
-                <th>Board Type</th>
-                <th>Expiry On</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var voucher in Model.Vouchers)
-            {
-                <tr>
-                    <td>@voucher.Id</td>
-                    <td>@voucher.SpinCount</td>
-                    <td>@voucher.MaxWinning</td>
-                    <td>@voucher.SpinBoard.ToString()</td>
-                    <td>
-                        @voucher.ExpiryOn
-                    </td>
-                    <td>
-                        @voucher.Status
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
 
 <div class="modal" tabindex="-1" role="dialog" id="addVoucher">
     <form action="/admin/addvoucher" method="post">
@@ -87,16 +48,3 @@
         </div>
     </form>
 </div>
-<script>
-    $(document).ready(function () {
-        $('#vouchers').DataTable();
-
-        
-    });
-
-    $('#expiryOn').datepicker({
-        uiLibrary: 'bootstrap4',
-        format: 'yyyy-mm-dd',
-        value: '@DateTime.Today.AddDays(10).ToString("yyyy-MM-dd")'
-    });
-</script>

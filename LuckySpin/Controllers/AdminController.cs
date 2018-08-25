@@ -41,6 +41,16 @@ namespace LuckySpin.Controllers
             return View(viewModel);
         }
 
+        public ActionResult AddVoucher(int customerId)
+        {
+            return View();
+        }
+
+        public ActionResult AddBoard()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult AddVoucher(Voucher voucher)
         {
