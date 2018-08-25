@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web.Mvc;
 using LuckySpin.Entities;
 using LuckySpin.Filters;
+using LuckySpin.Models;
 using LuckySpin.Models.Game;
+using LuckySpin.Models.ViewModels;
 using LuckySpin.Repositories;
 
 namespace LuckySpin.Controllers
@@ -72,21 +74,12 @@ namespace LuckySpin.Controllers
 
             return Json(new {prize = DateTime.Now.Millisecond % 4 * 5, status="success", result=0, remainingCount = voucher.SpinCount }, JsonRequestBehavior.AllowGet);
         }
-    }
 
-    public class GamePlayViewModel
-    {
-        public Voucher Voucher { get; set; }
-        public Customer Customer { get; set; }
-    }
+        public ActionResult TransactionHistory()
+        {
+            var transactions = GameRepository.GetTransactionHistory(UserSessionContext.CurrentUser.Customer).OrderByDescending(x=>x.TransactionTime).ToList();
 
-    public class Transaction
-    {
-        public int Id { get; set; }
-        public int VoucherId { get; set; }
-        public int CustomerId { get; set; }
-        public int Prize { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public DateTime ModifiedOn { get; set; }
+            return View(transactions);
+        }
     }
 }

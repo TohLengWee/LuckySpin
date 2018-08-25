@@ -6,6 +6,8 @@ using System.Linq;
 using Dapper;
 using LuckySpin.Controllers;
 using LuckySpin.Entities;
+using LuckySpin.Enums;
+using LuckySpin.Models;
 using LuckySpin.Models.Game;
 
 namespace LuckySpin.Repositories
@@ -18,7 +20,8 @@ namespace LuckySpin.Repositories
         Voucher GetVoucherById(int id, Customer customer);
         void ReduceSpinCountByVoucherId(int voucherId, Customer currentUserCustomer);
         void AddTransaction(Transaction transaction);
-        void Update(Voucher voucher);
+        void UpdateVoucher(Voucher voucher);
+        List<Transaction> GetTransactionHistory(Customer customer);
     }
 
     public class GameRepository: IGameRepository
@@ -53,20 +56,35 @@ namespace LuckySpin.Repositories
 
         public void AddTransaction(Transaction transaction)
         {
-            _db.Execute(@"insert into [Transaction] values (@VoucherId, @CustomerId, @Prize, @CreatedOn, @ModifiedOn)",
+            _db.Execute(@"insert into [Transaction] (VoucherId, CustomerId, Prize, Status, CreatedOn, ModifiedOn)
+                values (@VoucherId, @CustomerId, @Prize, @Status, @CreatedOn, @ModifiedOn)",
                 transaction);
         }
 
-        public void Update(Voucher voucher)
+        public void UpdateVoucher(Voucher voucher)
         {
             _db.Execute(
                 @"update voucher set status = @status, expiryOn = @expiryOn where id = @voucherId",
                 new { voucherId = voucher.Id, status = voucher.Status, expiryOn = voucher.ExpiryOn.ToString("yyyy-MM-dd")});
         }
 
+        public void UpdateTransaction(Transaction transaction)
+        {
+            _db.Execute(
+                @"update [Transaction] set status = @status, transactionTime = getdate() where id = @Id",
+                new { Id = transaction.Id, status = transaction.Status });
+        }
+
+        public List<Transaction> GetTransactionHistory(Customer customer)
+        {
+            return _db.Query<Transaction>("select Id, VoucherId, CustomerId, Prize, Status, TransactionTime from [Transaction] where CustomerId = @customerId", 
+                new { customer.CustomerId, Status = (int) TransactionStatus.Used}).ToList();
+        }
+
         public void AddVoucher(Voucher voucher)
         {
-            _db.Query<Voucher>(@"insert into Voucher values (@customerId, @spinCount, @maxWinning, @spinBoard, @ExpiryOn, @status, GetDate(), GetDate())", voucher);
+            _db.Query<Voucher>(@"insert into Voucher (CustomerId, SpinCount, MaxWinning, SpinBoard, ExpiryOn, Status, CreatedOn, ModifiedOn)
+            values (@customerId, @spinCount, @maxWinning, @spinBoard, @ExpiryOn, @status, GetDate(), GetDate())", voucher);
         }
     }
 }
