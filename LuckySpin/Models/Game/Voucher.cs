@@ -8,7 +8,7 @@ namespace LuckySpin.Models.Game
         public int Id { get; set; }
         public int CustomerId { get; set; }
         public int SpinCount { get; set; }
-        public int MaxWinning { get; set; }
+        public string Winning { get; set; }
         public SpinBoardType SpinBoard { get; set; }
         public DateTime ExpiryOn { get; set; }
         public int Status { get; set; }
