@@ -256,6 +256,7 @@
     <Content Include="Scripts\wheel\tt-new\CWheel-TT.js" />
     <Content Include="Scripts\wheel\tt-new\settings-TT.js" />
     <Content Include="sprites\audio_icon.png" />
+    <Content Include="sprites\_bg_menu.jpg" />
     <Content Include="sprites\bg_menu.jpg" />
     <Content Include="sprites\but_back.png" />
     <Content Include="sprites\but_play.png" />
