@@ -15,6 +15,11 @@ namespace LuckySpin.Controllers
     public class MainController : BaseController
     {
         public IGameRepository GameRepository = new GameRepository();
+        public Dictionary<int, string> PrizeDetail = new Dictionary<int, string>()
+        {
+            {1, "ZONK"}, {2, "150K"}, {3, "50K"}, {4, "75K"}, {5, "100K"},
+            {6, "ZONK"}, {7, "350K"}, {8, "10K"}, {9, "25K"}, {10, "35K"}
+        };
 
         public ActionResult Index()
         {
@@ -75,7 +80,7 @@ namespace LuckySpin.Controllers
 
             voucher = GameRepository.GetVoucherById(voucherId, UserSessionContext.CurrentUser.Customer);
 
-            return Json(new {prize = (prize-1) + DateTime.Now.Millisecond % 2 * (prize == 1 ?5 : 10), status="success", result=0, remainingCount = voucher.SpinCount }, JsonRequestBehavior.AllowGet);
+            return Json(new {prize = (prize-1) + DateTime.Now.Millisecond % 2 * (prize == 1 ?5 : 10), status="success", result=prize==1 || prize == 6?0:1, remainingCount = voucher.SpinCount, prizeDetail = PrizeDetail[prize] }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult TransactionHistory()

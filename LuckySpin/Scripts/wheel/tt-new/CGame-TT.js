@@ -50,7 +50,7 @@ function CGame(oData){
         var iTimeMult = iNumSpinFake;
 
         //SPIN
-        _oWheel.spin(iRotValue, iTimeMult, data.prize);
+        _oWheel.spin(iRotValue, iTimeMult, data);
     };                 
     
     this.setNewRound = function(){
@@ -102,7 +102,7 @@ function CGame(oData){
         } else {
             _iGameState = STATE_WIN;
             if(DISABLE_SOUND_MOBILE === false || s_bMobile === false){
-              xosandjxhgdaasd = "Rp." + (data.prize + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+              xosandjxhgdaasd = "Rp." + (data.prizeDetail + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
                 var _oHelpPanel = new CHelpPanel4();
             } 
         }
