@@ -31,7 +31,7 @@
                 <tr>
                     <td>@voucher.Id</td>
                     <td>@voucher.SpinCount</td>
-                    <td><a href="#">details</a></td>
+                    <td><a href="#" data-detail="@voucher.Winning" data-toggle="modal" data-target="#voucherWinning">details</a></td>
                     @*<td>@voucher.SpinBoard.ToString()</td>*@
                     <td>
                         @voucher.ExpiryOn
@@ -84,14 +84,53 @@
         </div>
     </form>
 </div>
+
+<div class="modal" tabindex="-1" role="dialog" id="voucherWinning">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Voucher Detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               
+            </div>
+        </div>
+    </div>
+</div>
 <script>
+    var mapping = {1:"ZONK", 2:"10K", 3: "25K", 4: "35K", 5:"50K", 6: "75K", 7: "100K", 8: "150K", 9: "300K"};
     $(document).ready(function () {
-        $('#vouchers').DataTable();  
+        $('#vouchers').DataTable();
     });
 
     $('#addVoucher').on('shown.bs.modal', function() {
         $("#spinCount").val("");
-        $("#maxWinning").html("");
+        $("#editOption").html("");
+        $("#winning").val("");
+    });
+
+    $('#voucherWinning').on('shown.bs.modal', function(event) {
+        var trigger = $(event.relatedTarget);
+        var detail = trigger.data("detail");
+        var tmpl = `<table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Remaining Spin</th>
+                            <th>Winning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {0}
+                    </tbody>
+                </table>`;
+        var data = Object.keys(detail).sort(function (a, b) { return b - a; }).map(function(x) {
+            return `<tr><td>${x}</td><td>${mapping[detail[x]]}</td></tr>`;
+        });
+        var modal = $(this);
+        modal.find('.modal-body').html(tmpl.replace("{0}", data.join("")));
     });
 
     $('#expiryOn').datepicker({
