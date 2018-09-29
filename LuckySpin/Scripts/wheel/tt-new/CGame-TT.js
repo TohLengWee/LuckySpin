@@ -84,14 +84,14 @@ function CGame(oData){
       if (data.prize == null){
             _iGameState = STATE_LOSE;
             if (DISABLE_SOUND_MOBILE === false || s_bMobile === false) {
-                xosandjxhgdaasd = PRIZE_NAME[_iCurWin];
+              xosandjxhgdaasd = data.prizeDetail;
                 var _oHelpPanel = new CHelpPanel5();
             } 
         }
       else if (data.result === 0){
             _iGameState = STATE_LOSE;
             if(DISABLE_SOUND_MOBILE === false || s_bMobile === false){
-                xosandjxhgdaasd = PRIZE_NAME[_iCurWin];
+                xosandjxhgdaasd = data.prizeDetail;
                 if(xosandjxhgdaasd == "ZONK"){
                     var _oHelpPanel = new CHelpPanel5();
                 }

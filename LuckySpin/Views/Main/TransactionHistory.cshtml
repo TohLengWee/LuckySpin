@@ -3,6 +3,11 @@
 @{
     ViewBag.Title = "Lucky Spin";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    Dictionary<int, string> PrizeDetail = new Dictionary<int, string>()
+    {
+        {1, "ZONK"}, {2, "150K"}, {3, "50K"}, {4, "75K"}, {5, "100K"},
+        {6, "ZONK"}, {7, "350K"}, {8, "10K"}, {9, "25K"}, {10, "35K"}
+    };
 }
 
 <div class="container">
@@ -24,7 +29,7 @@
                     <tr>
                         <td>@index</td>
                         <td>@transaction.VoucherId <br/> @transaction.Id</td>
-                        <td>@transaction.Prize</td>
+                        <td>@PrizeDetail[transaction.Prize]</td>
                         <td>@transaction.TransactionTime.ToString("dd-MM-yyyy HH:mm")</td>
                     </tr>
                 }
