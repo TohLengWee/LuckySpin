@@ -22,6 +22,7 @@ namespace LuckySpin.Repositories
         void AddTransaction(Transaction transaction);
         void UpdateVoucher(Voucher voucher);
         List<Transaction> GetTransactionHistory(Customer customer);
+        bool ToggleVoucherStatus(int voucherId);
     }
 
     public class GameRepository: IGameRepository
@@ -32,7 +33,7 @@ namespace LuckySpin.Repositories
         {
             return _db.Query<Voucher>(@"select * from voucher 
                                        where customerId = @customerId
-                                       order by status, createdon desc", new { customer.CustomerId }).ToList();
+                                       order by createdon desc", new { customer.CustomerId }).ToList();
         }
 
         public List<Voucher> GetActiveVouchers(Customer customer)
@@ -79,6 +80,12 @@ namespace LuckySpin.Repositories
         {
             return _db.Query<Transaction>("select Id, VoucherId, CustomerId, Prize, Status, TransactionTime from [Transaction] where CustomerId = @customerId", 
                 new { customer.CustomerId, Status = (int) TransactionStatus.Used}).ToList();
+        }
+
+        public bool ToggleVoucherStatus(int voucherId)
+        {
+            var sql = "Update Voucher Set Status = Status ^ 2 Where Id = @voucherId";
+            return _db.Execute(sql, new { voucherId }) == 1;
         }
 
         public void AddVoucher(Voucher voucher)

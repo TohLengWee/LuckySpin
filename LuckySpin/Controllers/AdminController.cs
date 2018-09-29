@@ -79,5 +79,12 @@ namespace LuckySpin.Controllers
             var success = _customerRepository.ActivateCustomer(customerId);
             return Json(new {Success = success});            
         }
+
+        [HttpPost]
+        public ActionResult ToggleVoucherStatus(int voucherId)
+        {
+            var success = _gameRepository.ToggleVoucherStatus(voucherId);
+            return Json(new {Success = success});
+        }
     }
 }

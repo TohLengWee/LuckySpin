@@ -59,20 +59,23 @@ namespace LuckySpin.Controllers
                 TempData["Error"] = "There is no spin remaining in the voucher.";
                 return Json(new {status = "error", msg= "There is no spin remaining in the voucher." });
             }
-            
+
+            var prize = voucher.WinningDetails[voucher.SpinCount];
+
             GameRepository.ReduceSpinCountByVoucherId(voucherId, UserSessionContext.CurrentUser.Customer);
             var transaction = new Transaction
             {
                 VoucherId = voucherId,
                 CustomerId = UserSessionContext.CurrentUser.Customer.CustomerId,
-                Prize = 0,
+                Prize = prize,
                 CreatedOn = DateTime.Now,
                 ModifiedOn = DateTime.Now
             };
             GameRepository.AddTransaction(transaction);
+
             voucher = GameRepository.GetVoucherById(voucherId, UserSessionContext.CurrentUser.Customer);
 
-            return Json(new {prize = DateTime.Now.Millisecond % 4 * 5, status="success", result=0, remainingCount = voucher.SpinCount }, JsonRequestBehavior.AllowGet);
+            return Json(new {prize = (prize-1) + DateTime.Now.Millisecond % 2 * (prize == 1 ?5 : 10), status="success", result=0, remainingCount = voucher.SpinCount }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult TransactionHistory()

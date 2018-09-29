@@ -37,7 +37,8 @@
                         @voucher.ExpiryOn
                     </td>
                     <td>
-                        @voucher.Status
+                        @{ var abc = voucher.Status ? "checked" : "";}
+                        <input type="checkbox" data-toggle="toggle" data-on="Active" data-off="Suspend" data-onstyle="success" data-offstyle="danger" data-size="mini" onchange="toggleVoucherStatus(@voucher.Id)" @abc>
                     </td>
                 </tr>
             }
@@ -69,11 +70,12 @@
                         <label for="expiryOn" class="font-weight-bold">Expiry On</label>
                         <input type="text" name="ExpiryOn" class="form-control" id="expiryOn" value="1">
                     </div>
-                    <div class="form-group">
-                        <span class="switch">
-                            <input type="checkbox" name="Status" class="switch-lg" id="switch-id" value="1">
-                            <label for="switch-id">Status</label>
-                        </span>
+                    <div>
+                        @*<span class="switch">
+            <input type="checkbox" name="Status" class="switch-lg" id="switch-id">
+            <label for="switch-id">Status</label>
+        </span>*@
+                        <input id="switch-id" class="form-control" name="status" type="checkbox" data-toggle="toggle" data-on="Active" data-off="Suspend" data-onstyle="success" data-offstyle="danger" data-size="normal" >
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -101,9 +103,11 @@
     </div>
 </div>
 <script>
-    var mapping = {1:"ZONK", 2:"10K", 3: "25K", 4: "35K", 5:"50K", 6: "75K", 7: "100K", 8: "150K", 9: "300K"};
+    var mapping = {1:"ZONK", 2:"150K", 3: "50K", 4: "75K", 5:"100K", 6: "ZONK", 7: "350K", 8: "10K", 9: "25K", 10: "35K"};
     $(document).ready(function () {
-        $('#vouchers').DataTable();
+        $('#vouchers').DataTable({
+            "order": [[0, "desc" ]]
+        } );
     });
 
     $('#addVoucher').on('shown.bs.modal', function() {
@@ -152,14 +156,14 @@
                             <div class="col-xs-6 col-sm-6">
                                 <select class="form-control option" style="height: 34px; font-size: 1.2rem;" data-index="{0}" onchange="handleChange(this)">
                                     <option value='1'>ZONK</option>
-                                    <option value='2'>10K</option>
-                                    <option value='3'>25K</option>
-                                    <option value='4'>35K</option>
-                                    <option value='5'>50K</option>
-                                    <option value='6'>75K</option>
-                                    <option value='7'>100K</option>
-                                    <option value='8'>150K</option>
-                                    <option value='9'>300K</option>
+                                    <option value='8'>10K</option>
+                                    <option value='9'>25K</option>
+                                    <option value='10'>35K</option>
+                                    <option value='3'>50K</option>
+                                    <option value='4'>75K</option>
+                                    <option value='5'>100K</option>
+                                    <option value='2'>150K</option>
+                                    <option value='7'>350K</option>
                                 </select>
                             </div>
                         </div>`;
@@ -169,6 +173,15 @@
         for (var i = count; i > 0; i--) {
             $("#editOption").append(template.replace(/\{0\}/g, i));
         }
+        handleChange();
+    });
+
+    $("#switch-id").change(function() {
+        if ($(this).prop('checked')) {
+            $(this).val("true");
+        } else {
+            $(this).val("false");
+        }
     });
 
     function handleChange(element) {
@@ -177,5 +190,15 @@
             options[$(this).data("index")] = $(this).val();
         });
         $("#winning").val(JSON.stringify(options));
+    }
+
+    function toggleVoucherStatus(voucherId) {
+        $.post("ToggleVoucherStatus",
+            { voucherId: voucherId },
+            function(response) {
+                if (response.Success) {
+                    alert("Update Succesfully.");
+                }
+            });
     }
 </script>
