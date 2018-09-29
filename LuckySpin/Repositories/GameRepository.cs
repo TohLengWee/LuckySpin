@@ -57,8 +57,8 @@ namespace LuckySpin.Repositories
 
         public void AddTransaction(Transaction transaction)
         {
-            _db.Execute(@"insert into [Transaction] (VoucherId, CustomerId, Prize, Status, CreatedOn, ModifiedOn)
-                values (@VoucherId, @CustomerId, @Prize, @Status, @CreatedOn, @ModifiedOn)",
+            _db.Execute(@"insert into [Transaction] (VoucherId, CustomerId, Prize, Status, CreatedOn, ModifiedOn, TransactionTime)
+                values (@VoucherId, @CustomerId, @Prize, @Status, @CreatedOn, @ModifiedOn, @TransactionTime)",
                 transaction);
         }
 

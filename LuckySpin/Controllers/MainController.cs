@@ -74,7 +74,8 @@ namespace LuckySpin.Controllers
                 CustomerId = UserSessionContext.CurrentUser.Customer.CustomerId,
                 Prize = prize,
                 CreatedOn = DateTime.Now,
-                ModifiedOn = DateTime.Now
+                ModifiedOn = DateTime.Now,
+                TransactionTime = DateTime.Now
             };
             GameRepository.AddTransaction(transaction);
 
