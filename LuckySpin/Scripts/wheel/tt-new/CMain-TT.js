@@ -110,9 +110,10 @@ function CMain(oData){
         s_oSpriteLibrary.addSprite("bg_history","/sprites/toto/history-TT.png");
         s_oSpriteLibrary.addSprite("bg_info","/sprites/toto/info-tt.png");
         
-        s_oSpriteLibrary.addSprite("but_exit","/sprites/but_back.png");
+        s_oSpriteLibrary.addSprite("but_exit", "/sprites/but_back.png");
+        s_oSpriteLibrary.addSprite("but_out", "/sprites/but_out.png");
         s_oSpriteLibrary.addSprite("audio_icon","/sprites/audio_icon.png");
-        s_oSpriteLibrary.addSprite("but_spin","/sprites/toto/but_spin-TT.png");
+        s_oSpriteLibrary.addSprite("but_spin", "/sprites/toto/but_spin-TT.png");
         s_oSpriteLibrary.addSprite("but_plus","/sprites/toto/but_plus-TT.png"); 
         s_oSpriteLibrary.addSprite("but_toa","/sprites/toto/toa_toto.png");     
         

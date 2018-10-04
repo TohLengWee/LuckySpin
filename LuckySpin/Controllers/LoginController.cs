@@ -45,6 +45,12 @@ namespace LuckySpin.Controllers
             return Json(new {Success = true, Url = url, Message = string.Empty});
         }
 
+        public ActionResult SignOut()
+        {
+            UserSessionContext.CurrentUser = null;
+            return RedirectToAction("Index", "Home");
+        }
+
         private string GetMainPageBasedOnRole(UserSession currentUser)
         {
             return currentUser.Customer.IsAdminRole() ? Url.Action("MembersList", "Admin"): Url.Action("Index", "Main");

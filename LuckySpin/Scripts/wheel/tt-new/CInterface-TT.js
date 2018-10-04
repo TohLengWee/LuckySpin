@@ -17,10 +17,16 @@ function CInterface(){
         var oExitX;        
         
         var oSprite = s_oSpriteLibrary.getSprite('but_exit');
-        _pStartPosExit = {x: CANVAS_WIDTH-50, y: 150};
+        _pStartPosExit = {x: CANVAS_WIDTH-180, y: 150};
         _oButExit = new CTextButton(_pStartPosExit.x - 220, _pStartPosExit.y,oSprite," HOME ","Arial","#ffffff",40, false, s_oStage);
         _oButExit.addEventListener(ON_MOUSE_UP, this._onExit, this);
         _oButExit.enable();
+
+        var oSprite = s_oSpriteLibrary.getSprite('but_out');
+        _pStartPosExit = { x: CANVAS_WIDTH + 80, y: 150 };
+        _oButOut = new CTextButton(_pStartPosExit.x - 220, _pStartPosExit.y, oSprite, " Sign Out ", "Arial", "#ffffff", 35, false, s_oStage);
+        _oButOut.addEventListener(ON_MOUSE_UP, this._onSignOut, this);
+        _oButOut.enable();
          //_oButExit.unload();
         
         oExitX = CANVAS_WIDTH - (oSprite.width/2) - 100;
@@ -35,7 +41,7 @@ function CInterface(){
 
         var oSprite = s_oSpriteLibrary.getSprite('but_spin');
         //_oButSpin = new CTextButton(975,CANVAS_HEIGHT - 140,oSprite," ","Helvetica","#fff",40, false, s_oStage);
-        _oButSpin = new CTextButton(CANVAS_WIDTH - 250, CANVAS_HEIGHT/2 - 100,oSprite," ","Helvetica","#fff",40, false, s_oStage);
+        _oButSpin = new CTextButton(CANVAS_WIDTH - 250, CANVAS_HEIGHT/2 + 200,oSprite," ","Helvetica","#fff",40, false, s_oStage);
         _oButSpin.enable();
         if (numb_kupn < 1){
         _oButSpin.disable(); 
@@ -74,7 +80,89 @@ function CInterface(){
         _oTextHighLighty.lineWidth = 500;
         // _oTextHighLight.alpha = _iCurAlpha;
         s_oStage.addChild(_oTextHighLighty);
-        
+
+        idpertama = new createjs.Text(lastus[0], "normal 25px Helvetica", "#000");
+        idpertama.x = 1490;
+        idpertama.y = 370;
+        idpertama.textAlign = "left";
+        idpertama.textBaseline = "alphabetic";
+        idpertama.lineWidth = 400;
+        // _oTextHighLight.alpha = _iCurAlpha;
+        s_oStage.addChild(idpertama);
+
+        hadiahpertama = new createjs.Text(lastnm[0], "normal 25px Helvetica", "#000");
+        hadiahpertama.x = 1700;
+        hadiahpertama.y = 370;
+        hadiahpertama.textAlign = "left";
+        hadiahpertama.textBaseline = "alphabetic";
+        hadiahpertama.lineWidth = 400;
+        s_oStage.addChild(hadiahpertama);
+        idpertama = new createjs.Text(lastus[1], "normal 25px Helvetica", "#000");
+        idpertama.x = 1490;
+        idpertama.y = 430;
+        idpertama.textAlign = "left";
+        idpertama.textBaseline = "alphabetic";
+        idpertama.lineWidth = 400;
+        // _oTextHighLight.alpha = _iCurAlpha;
+        s_oStage.addChild(idpertama);
+
+        hadiahpertama = new createjs.Text(lastnm[1], "normal 25px Helvetica", "#000");
+        hadiahpertama.x = 1700;
+        hadiahpertama.y = 430;
+        hadiahpertama.textAlign = "left";
+        hadiahpertama.textBaseline = "alphabetic";
+        hadiahpertama.lineWidth = 400;
+        s_oStage.addChild(hadiahpertama);
+
+        idpertama = new createjs.Text(lastus[2], "normal 25px Helvetica", "#000");
+        idpertama.x = 1490;
+        idpertama.y = 490;
+        idpertama.textAlign = "left";
+        idpertama.textBaseline = "alphabetic";
+        idpertama.lineWidth = 400;
+        // _oTextHighLight.alpha = _iCurAlpha;
+        s_oStage.addChild(idpertama);
+
+        hadiahpertama = new createjs.Text(lastnm[2], "normal 25px Helvetica", "#000");
+        hadiahpertama.x = 1700;
+        hadiahpertama.y = 490;
+        hadiahpertama.textAlign = "left";
+        hadiahpertama.textBaseline = "alphabetic";
+        hadiahpertama.lineWidth = 400;
+        s_oStage.addChild(hadiahpertama);
+        idpertama = new createjs.Text(lastus[3], "normal 25px Helvetica", "#000");
+        idpertama.x = 1490;
+        idpertama.y = 555;
+        idpertama.textAlign = "left";
+        idpertama.textBaseline = "alphabetic";
+        idpertama.lineWidth = 400;
+        // _oTextHighLight.alpha = _iCurAlpha;
+        s_oStage.addChild(idpertama);
+
+        hadiahpertama = new createjs.Text(lastnm[3], "normal 25px Helvetica", "#000");
+        hadiahpertama.x = 1700;
+        hadiahpertama.y = 555;
+        hadiahpertama.textAlign = "left";
+        hadiahpertama.textBaseline = "alphabetic";
+        hadiahpertama.lineWidth = 400;
+        s_oStage.addChild(hadiahpertama);
+        idpertama = new createjs.Text(lastus[4], "normal 25px Helvetica", "#000");
+        idpertama.x = 1490;
+        idpertama.y = 620;
+        idpertama.textAlign = "left";
+        idpertama.textBaseline = "alphabetic";
+        idpertama.lineWidth = 400;
+        // _oTextHighLight.alpha = _iCurAlpha;
+        s_oStage.addChild(idpertama);
+
+        hadiahpertama = new createjs.Text(lastnm[4], "normal 25px Helvetica", "#000");
+        hadiahpertama.x = 1700;
+        hadiahpertama.y = 620;
+        hadiahpertama.textAlign = "left";
+        hadiahpertama.textBaseline = "alphabetic";
+        hadiahpertama.lineWidth = 400;
+        s_oStage.addChild(hadiahpertama);
+
         this.refreshButtonPos(s_iOffsetX,s_iOffsetY);
     };
     
@@ -188,6 +276,10 @@ function CInterface(){
     
     this._onExit = function(){
       window.location = "/Main"; 
+    };
+
+    this._onSignOut = function () {
+      window.location = "/Login/SignOut";
     };
     
     s_oInterface = this;

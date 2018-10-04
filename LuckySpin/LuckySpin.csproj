@@ -256,6 +256,8 @@
     <Content Include="Scripts\wheel\tt-new\CWheel-TT.js" />
     <Content Include="Scripts\wheel\tt-new\settings-TT.js" />
     <Content Include="sprites\audio_icon.png" />
+    <Content Include="sprites\but_out.png" />
+    <Content Include="sprites\toto\bg_game-tt.png" />
     <Content Include="sprites\_bg_menu.jpg" />
     <Content Include="sprites\bg_menu.jpg" />
     <Content Include="sprites\but_back.png" />
@@ -264,7 +266,7 @@
     <Content Include="sprites\msg_box.png" />
     <Content Include="sprites\overlay_info.png" />
     <Content Include="sprites\progress_bar.png" />
-    <Content Include="sprites\toto\bg_game-tt.png" />
+    <Content Include="sprites\toto\___bg_game-tt.png" />
     <Content Include="sprites\toto\bg_history_tt.png" />
     <Content Include="sprites\toto\bg_lose_tt.png" />
     <Content Include="sprites\toto\bg_point_tt.png" />
@@ -285,6 +287,7 @@
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
