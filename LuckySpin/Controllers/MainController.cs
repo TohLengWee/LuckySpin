@@ -45,7 +45,8 @@ namespace LuckySpin.Controllers
             return View("Game", new GamePlayViewModel()
             {
                 Voucher = voucher,
-                Customer = UserSessionContext.CurrentUser.Customer
+                Customer = UserSessionContext.CurrentUser.Customer,
+                Transactions = GameRepository.GetLast5Transactions()
             });
         }
 

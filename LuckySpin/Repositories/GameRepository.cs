@@ -23,6 +23,7 @@ namespace LuckySpin.Repositories
         void UpdateVoucher(Voucher voucher);
         List<Transaction> GetTransactionHistory(Customer customer);
         bool ToggleVoucherStatus(int voucherId);
+        List<TransactionDetail> GetLast5Transactions();
     }
 
     public class GameRepository: IGameRepository
@@ -93,5 +94,20 @@ namespace LuckySpin.Repositories
             _db.Query<Voucher>(@"insert into Voucher (CustomerId, SpinCount, Winning, SpinBoard, ExpiryOn, Status, CreatedOn, ModifiedOn)
             values (@customerId, @spinCount, @Winning, @spinBoard, @ExpiryOn, @status, GetDate(), GetDate())", voucher);
         }
+
+        public List<TransactionDetail> GetLast5Transactions()
+        {
+            return _db.Query<TransactionDetail>(@"select top 5 c.Username, b.OptionName as Prize from [Transaction] t
+	                                                inner join Customer c with(nolock) on t.CustomerId = c.CustomerId
+	                                                inner join BoardDetail b with(nolock) on t.Prize = b.OptionId
+                                                  where b.OptionId not in (1, 6)
+                                                  order by TransactionTime desc").ToList();
+        }
+    }
+
+    public class TransactionDetail
+    {
+        public string Username { get; set; }
+        public string Prize { get; set; }
     }
 }
