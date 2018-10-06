@@ -76,7 +76,7 @@ namespace LuckySpin.Controllers
                 Prize = prize,
                 CreatedOn = DateTime.Now,
                 ModifiedOn = DateTime.Now,
-                TransactionTime = DateTime.Now.AddSeconds(5)
+                TransactionTime = DateTime.Now.AddSeconds(30)
             };
             GameRepository.AddTransaction(transaction);
 
