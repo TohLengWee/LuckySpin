@@ -76,7 +76,7 @@ namespace LuckySpin.Controllers
                 Prize = prize,
                 CreatedOn = DateTime.Now,
                 ModifiedOn = DateTime.Now,
-                TransactionTime = DateTime.Now
+                TransactionTime = DateTime.Now.AddSeconds(5)
             };
             GameRepository.AddTransaction(transaction);
 
@@ -90,6 +90,18 @@ namespace LuckySpin.Controllers
             var transactions = GameRepository.GetTransactionHistory(UserSessionContext.CurrentUser.Customer).OrderByDescending(x=>x.TransactionTime).ToList();
 
             return View(transactions);
+        }
+
+        public JsonResult GetLast5Winners()
+        {
+            var transactionDetails = GameRepository.GetLast5Transactions();
+            foreach (var x in transactionDetails)
+            {
+                x.Username = x.Username.Substring(0, 3).ToUpper() + "*****";
+                x.Prize = "Rp. " + x.Prize;
+            }
+
+            return Json(transactionDetails, JsonRequestBehavior.AllowGet);
         }
     }
 }

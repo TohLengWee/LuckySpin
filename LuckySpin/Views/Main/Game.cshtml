@@ -60,23 +60,52 @@
         //lastus = ["ADE*****", "PLE*****", "CHA*****", "ELI*****", "EBE*****", "ALK*****"];
 
         //lastnm = ["Rp. 5.000", "Rp. 10.000", "Rp. 5.000", "Rp. 8.000", "Rp. 33.000", "Rp. 15.000"];
-        lastus = @Html.Raw(JsonConvert.SerializeObject(Model.Transactions.Select(x => x.Username.Substring(0, 3).ToUpper() + "*****")));
-        lastnm = @Html.Raw(JsonConvert.SerializeObject(Model.Transactions.Select(x => "Rp. " + x.Prize)));
+        var lastus = @Html.Raw(JsonConvert.SerializeObject(Model.Transactions.Select(x => x.Username.Substring(0, 3).ToUpper() + "*****")));
+        var lastnm = @Html.Raw(JsonConvert.SerializeObject(Model.Transactions.Select(x => "Rp. " + x.Prize)));
         toprz = [500000, 5500000, 15500000, 60500000];
         tokup = ["1", "2", "4", "6"];
-        var gamename = "LuckySpin"; var usidxx = "@Model.Customer.Username"; var announcActive = 0; var announcTitle = '';
+        var gamename = "LuckySpin"; var usidxx = "@Model.Customer.Username";
+        var announcActive = 0;
+        var announcTitle = '';
         var announcContent = '';
         var frm_clmks = "";
         var rturl = '';
         var spcprz = [""];
-        trs_prz = ["0018052102471070661874", "0018051708572858376475", "0018051608285912292680", "0018051507382967217424", "0018051107570852408211", "0018051107563531129063", "0018051107560330842715", "NULL", "NULL", "NULL"];
-        date_prz = ["14:47:10 21-05-2018", "08:57:29 17-05-2018", "20:29:00 16-05-2018", "19:38:29 15-05-2018", "19:57:09 11-05-2018", "19:56:35 11-05-2018", "19:56:03 11-05-2018", "NULL", "NULL", "NULL"];
+        trs_prz = [
+            "0018052102471070661874", "0018051708572858376475", "0018051608285912292680", "0018051507382967217424",
+            "0018051107570852408211", "0018051107563531129063", "0018051107560330842715", "NULL", "NULL", "NULL"
+        ];
+        date_prz = [
+            "14:47:10 21-05-2018", "08:57:29 17-05-2018", "20:29:00 16-05-2018", "19:38:29 15-05-2018",
+            "19:57:09 11-05-2018", "19:56:35 11-05-2018", "19:56:03 11-05-2018", "NULL", "NULL", "NULL"
+        ];
         hasil_prz = ["ZONK", "ZONK", "ZONK", "ZONK", "ZONK", "ZONK", "ZONK", "NULL", "NULL", "NULL"];
         var jum_line = "7";
         var point_zonk = "18.000";
         var def_point = "1000";
         var def_redeem = "50000";
         var voucherId = @Model.Voucher.Id;
+        var last5Objects = {name:[], prize:[]};
+
+        (function getLastWinners() {
+            setTimeout(function() {
+                    $.get("/main/getlast5winners",
+                        function(data) {
+                            if (data) {
+                                var us = [];
+                                var nm = [];
+                                data.forEach(function(x, i) {
+                                    last5Objects.name[i].text = x.Username;
+                                    last5Objects.prize[i].text = x.Prize;
+                                });
+                                lastus = us;
+                                lastnm = nm;
+                            }
+                            getLastWinners();
+                        });
+                },
+                2000);
+        })();
     </script>
     <script language="javascript">
         $(document).ready(function () {

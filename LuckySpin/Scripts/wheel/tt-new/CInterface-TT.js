@@ -88,6 +88,7 @@ function CInterface(){
         idpertama.textBaseline = "alphabetic";
         idpertama.lineWidth = 400;
         // _oTextHighLight.alpha = _iCurAlpha;
+        last5Objects.name.push(idpertama);
         s_oStage.addChild(idpertama);
 
         hadiahpertama = new createjs.Text(lastnm[0], "normal 25px Helvetica", "#000");
@@ -96,7 +97,9 @@ function CInterface(){
         hadiahpertama.textAlign = "left";
         hadiahpertama.textBaseline = "alphabetic";
         hadiahpertama.lineWidth = 400;
+        last5Objects.prize.push(hadiahpertama);
         s_oStage.addChild(hadiahpertama);
+
         idpertama = new createjs.Text(lastus[1], "normal 25px Helvetica", "#000");
         idpertama.x = 1490;
         idpertama.y = 430;
@@ -104,6 +107,7 @@ function CInterface(){
         idpertama.textBaseline = "alphabetic";
         idpertama.lineWidth = 400;
         // _oTextHighLight.alpha = _iCurAlpha;
+        last5Objects.name.push(idpertama);
         s_oStage.addChild(idpertama);
 
         hadiahpertama = new createjs.Text(lastnm[1], "normal 25px Helvetica", "#000");
@@ -112,6 +116,7 @@ function CInterface(){
         hadiahpertama.textAlign = "left";
         hadiahpertama.textBaseline = "alphabetic";
         hadiahpertama.lineWidth = 400;
+        last5Objects.prize.push(hadiahpertama);
         s_oStage.addChild(hadiahpertama);
 
         idpertama = new createjs.Text(lastus[2], "normal 25px Helvetica", "#000");
@@ -121,6 +126,7 @@ function CInterface(){
         idpertama.textBaseline = "alphabetic";
         idpertama.lineWidth = 400;
         // _oTextHighLight.alpha = _iCurAlpha;
+      last5Objects.name.push(idpertama);
         s_oStage.addChild(idpertama);
 
         hadiahpertama = new createjs.Text(lastnm[2], "normal 25px Helvetica", "#000");
@@ -128,8 +134,10 @@ function CInterface(){
         hadiahpertama.y = 490;
         hadiahpertama.textAlign = "left";
         hadiahpertama.textBaseline = "alphabetic";
-        hadiahpertama.lineWidth = 400;
+      hadiahpertama.lineWidth = 400;
+      last5Objects.prize.push(hadiahpertama);
         s_oStage.addChild(hadiahpertama);
+
         idpertama = new createjs.Text(lastus[3], "normal 25px Helvetica", "#000");
         idpertama.x = 1490;
         idpertama.y = 555;
@@ -137,6 +145,7 @@ function CInterface(){
         idpertama.textBaseline = "alphabetic";
         idpertama.lineWidth = 400;
         // _oTextHighLight.alpha = _iCurAlpha;
+      last5Objects.name.push(idpertama);
         s_oStage.addChild(idpertama);
 
         hadiahpertama = new createjs.Text(lastnm[3], "normal 25px Helvetica", "#000");
@@ -144,8 +153,10 @@ function CInterface(){
         hadiahpertama.y = 555;
         hadiahpertama.textAlign = "left";
         hadiahpertama.textBaseline = "alphabetic";
-        hadiahpertama.lineWidth = 400;
+      hadiahpertama.lineWidth = 400;
+      last5Objects.prize.push(hadiahpertama);
         s_oStage.addChild(hadiahpertama);
+
         idpertama = new createjs.Text(lastus[4], "normal 25px Helvetica", "#000");
         idpertama.x = 1490;
         idpertama.y = 620;
@@ -153,6 +164,7 @@ function CInterface(){
         idpertama.textBaseline = "alphabetic";
         idpertama.lineWidth = 400;
         // _oTextHighLight.alpha = _iCurAlpha;
+      last5Objects.name.push(idpertama);
         s_oStage.addChild(idpertama);
 
         hadiahpertama = new createjs.Text(lastnm[4], "normal 25px Helvetica", "#000");
@@ -160,7 +172,8 @@ function CInterface(){
         hadiahpertama.y = 620;
         hadiahpertama.textAlign = "left";
         hadiahpertama.textBaseline = "alphabetic";
-        hadiahpertama.lineWidth = 400;
+      hadiahpertama.lineWidth = 400;
+      last5Objects.prize.push(hadiahpertama);
         s_oStage.addChild(hadiahpertama);
 
         this.refreshButtonPos(s_iOffsetX,s_iOffsetY);
