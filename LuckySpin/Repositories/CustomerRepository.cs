@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -6,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
 using LuckySpin.Entities;
+using LuckySpin.Helpers;
 
 namespace LuckySpin.Repositories
 {
@@ -26,7 +28,7 @@ namespace LuckySpin.Repositories
         public bool CreateCustomer(Customer customer)
         {
             var sql = "Insert Into Customer (Username, Password, Role, BillNumber, Bank, PhoneNumber, Status, CreatedOn, ModifiedOn)" +
-                      "Values (@Username, @Password, 1, @BillNumber, @Bank, @PhoneNumber, 0, GETDATE(), GETDATE());";
+                      "Values (@Username, @Password, 1, @BillNumber, @Bank, @PhoneNumber, 0, @createdOn, @modifiedOn);";
             return _db.Execute(sql, customer) == 1;
         }
 

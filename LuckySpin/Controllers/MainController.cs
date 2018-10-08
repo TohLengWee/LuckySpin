@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using LuckySpin.Entities;
 using LuckySpin.Filters;
+using LuckySpin.Helpers;
 using LuckySpin.Models;
 using LuckySpin.Models.Game;
 using LuckySpin.Models.ViewModels;
@@ -74,10 +75,11 @@ namespace LuckySpin.Controllers
                 VoucherId = voucherId,
                 CustomerId = UserSessionContext.CurrentUser.Customer.CustomerId,
                 Prize = prize,
-                CreatedOn = DateTime.Now,
-                ModifiedOn = DateTime.Now,
-                TransactionTime = DateTime.Now.AddSeconds(30)
+                CreatedOn = DateTime.Now.GetNow(),
+                ModifiedOn = DateTime.Now.GetNow(),
+                TransactionTime = DateTime.Now.GetNow().AddSeconds(30)
             };
+
             GameRepository.AddTransaction(transaction);
 
             voucher = GameRepository.GetVoucherById(voucherId, UserSessionContext.CurrentUser.Customer);

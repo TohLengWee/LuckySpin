@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -7,6 +8,7 @@ using Dapper;
 using LuckySpin.Controllers;
 using LuckySpin.Entities;
 using LuckySpin.Enums;
+using LuckySpin.Helpers;
 using LuckySpin.Models;
 using LuckySpin.Models.Game;
 
@@ -40,8 +42,8 @@ namespace LuckySpin.Repositories
         public List<Voucher> GetActiveVouchers(Customer customer)
         {
             return _db.Query<Voucher>(@"select * from voucher 
-                                       where customerId = @customerId and expiryon > GetDate() and Status = 1 and SpinCount > 0
-                                       order by createdon desc", new {customer.CustomerId}).ToList();
+                                       where customerId = @customerId and expiryon > @expiryOn and Status = 1 and SpinCount > 0
+                                       order by createdon desc", new {customer.CustomerId, expiryOn = DateTime.Now.GetNow()}).ToList();
         }
 
         public Voucher GetVoucherById(int id, Customer customer)
@@ -73,8 +75,8 @@ namespace LuckySpin.Repositories
         public void UpdateTransaction(Transaction transaction)
         {
             _db.Execute(
-                @"update [Transaction] set status = @status, transactionTime = getdate() where id = @Id",
-                new { Id = transaction.Id, status = transaction.Status });
+                @"update [Transaction] set status = @status, transactionTime = @transactionTime where id = @Id",
+                new { Id = transaction.Id, status = transaction.Status, transactionTime = DateTime.Now.GetNow() });
         }
 
         public List<Transaction> GetTransactionHistory(Customer customer)
@@ -92,7 +94,7 @@ namespace LuckySpin.Repositories
         public void AddVoucher(Voucher voucher)
         {
             _db.Query<Voucher>(@"insert into Voucher (CustomerId, SpinCount, Winning, SpinBoard, ExpiryOn, Status, CreatedOn, ModifiedOn)
-            values (@customerId, @spinCount, @Winning, @spinBoard, @ExpiryOn, @status, GetDate(), GetDate())", voucher);
+            values (@customerId, @spinCount, @Winning, @spinBoard, @ExpiryOn, @status, @createdOn, @modifiedOn)", voucher);
         }
 
         public List<TransactionDetail> GetLast5Transactions()

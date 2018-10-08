@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using LuckySpin.Entities;
+using LuckySpin.Helpers;
 using LuckySpin.Models.Register;
 using LuckySpin.Repositories;
 
@@ -24,6 +26,8 @@ namespace LuckySpin.Controllers
             }
 
             var customer = new Customer(registration);
+            customer.CreatedOn = DateTime.Now.GetNow();
+            customer.ModifiedOn = DateTime.Now.GetNow();
             _customerRepository.CreateCustomer(customer);
 
             return RedirectToAction("Index", "Home");

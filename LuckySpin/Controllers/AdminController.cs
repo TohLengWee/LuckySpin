@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
 using LuckySpin.Entities;
 using LuckySpin.Filters;
+using LuckySpin.Helpers;
 using LuckySpin.Models.Game;
 using LuckySpin.Models.ViewModels;
 using LuckySpin.Repositories;
@@ -54,6 +56,8 @@ namespace LuckySpin.Controllers
         [HttpPost]
         public ActionResult AddVoucher(Voucher voucher)
         {
+            voucher.CreatedOn = DateTime.Now.GetNow();
+            voucher.ModifiedOn = DateTime.Now.GetNow();
             _gameRepository.AddVoucher(voucher);
             var customer = _customerRepository.GetCustomerByCustomerId(voucher.CustomerId);
             return RedirectToAction("MemberDetail", new RouteValueDictionary {{"username", customer.Username}});
